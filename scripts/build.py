@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Convierte la fuente del artefacto de Claude en una web completa (index.html).
 
-Uso: python3 scripts/build.py [fuente/plano.html] [index.html]
+Uso: python3 scripts/build.py [entrada] [index.html]
 
-Acepta la fuente tal como la guarda Claude (empieza por <title>) o la versión
-servida por el visor (con <!doctype html>…<body> delante): en ese caso quita
-esa envoltura antes de construir.
+La entrada puede ser fuente/plano.html (por defecto) o el archivo que guarda
+la lectura del artefacto («Artifact read»), con la envoltura del visor
+(<!doctype html>…<body>) delante. En ese caso la quita y, además de generar
+index.html, actualiza fuente/plano.html con el contenido limpio.
 """
 import sys, re, pathlib
 
@@ -18,6 +19,12 @@ if html.lstrip().lower().startswith('<!doctype'):
     html = html[html.index('<body>') + len('<body>'):]
     html = re.sub(r'</body>\s*</html>\s*$', '', html.rstrip()) + '\n'
 html = html.lstrip()
+
+FUENTE = pathlib.Path('fuente/plano.html')
+if src.resolve() != FUENTE.resolve():
+    FUENTE.parent.mkdir(exist_ok=True)
+    FUENTE.write_text(html, encoding='utf-8')
+    print(f'{FUENTE}: actualizado desde {src}')
 
 split = html.index('<div id="app">')
 head, body = html[:split], html[split:]
