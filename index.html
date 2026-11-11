@@ -14,7 +14,7 @@
 <title>Plano de lo que falla</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@400..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Nunito:wght@400..1000&display=swap">
 <style>
 :root{
   --bg:#F4F5F7; --surface:#FFFFFF; --surface-2:#EEF1F5; --rule:#DDE2E8; --rule-2:#C5CCD5;
@@ -702,6 +702,439 @@ body{line-height:1.6}
   .line-head{margin:-19px 0 14px;min-height:90px}
   .stops{padding-left:0}
 }
+/* Juego 2.0: reto de hoy, puntos, presentador y efectos */
+.jg button:focus-visible,.jg a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.jg-barra{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 12px;margin:0 0 16px}
+.jg-modo{display:inline-flex;flex-wrap:wrap;gap:8px}
+.jg-mbtn{min-height:44px;padding:8px 14px;border:2px solid var(--ink);background:var(--surface);color:var(--ink);font:800 var(--fs-2)/1.2 var(--font-d);letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
+.jg-mbtn[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.jg-marc{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 10px;font:800 var(--fs-3)/1.2 var(--font-d)}
+.jg-marc b{font-size:var(--fs-5)}
+.jg-presen{display:flex;align-items:flex-end;gap:12px;margin:0 0 16px;min-width:0}
+#jgPreg{scroll-margin-top:84px}
+.jg-cei{flex:none;margin:0;height:150px}
+.jg-cei svg{display:block;height:100%;width:auto;overflow:visible;animation:jgFlota 3s ease-in-out infinite}
+@media (min-width:640px){.jg-cei{height:220px}}
+.jg-boc{position:relative;flex:1 1 auto;min-width:0;max-width:34ch;margin:0 0 22px;padding:12px 16px;border:3px solid var(--ink);background:var(--surface);color:var(--ink);font:700 var(--fs-3)/1.35 var(--font-d)}
+.jg-boc::before{content:"";position:absolute;left:-15px;top:50%;margin-top:-9px;border:9px solid transparent;border-left:0;border-right:12px solid var(--ink)}
+.jg-tim{position:relative;height:10px;margin:0 0 6px;background:var(--rule)}
+.jg-tim i{position:absolute;inset:0;background:var(--ink);transform-origin:0 50%;animation:jgVacia 20s linear forwards}
+.jg-bon{font-size:var(--fs-2);color:var(--ink-2);margin:0 0 14px}
+.jg-et{width:auto;min-width:6.5em}
+.jg-pts{font:800 var(--fs-4)/1.3 var(--font-d);color:var(--ink);margin:0}
+.jg-final{display:grid;gap:16px}
+.jg-res{margin:0}
+.jg-grid{font-size:var(--fs-5);letter-spacing:.08em;margin:0}
+.jg-stats{display:flex;flex-wrap:wrap;gap:12px;list-style:none;margin:0;padding:0}
+.jg-stats li{flex:1 1 120px;padding:12px;border:2px solid var(--ink);text-align:center}
+.jg-stats b{display:block;font:850 var(--fs-6)/1 var(--font-d)}
+.jg-stats span{font-size:var(--fs-2);color:var(--ink-2)}
+.jg-rep-h{font:800 var(--fs-4)/1.2 var(--font-d);margin:0}
+.jg-rep{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.jg-rep a{display:block;min-height:44px;padding:10px 12px;border-left:6px solid var(--ink);color:var(--ink);text-decoration:none;font-size:var(--fs-3);overflow-wrap:anywhere}
+.jg-rep a:hover{text-decoration:underline}
+.jg-rep b{display:block;font-size:var(--fs-2);text-transform:uppercase;letter-spacing:.06em}
+.jg-conf{position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:60}
+.jg-sacude{animation:jgSacude .4s ease-out}
+@keyframes jgVacia{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+@keyframes jgFlota{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes jgSacude{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){.jg-cei svg,.jg-tim i,.jg-sacude{animation:none}}
+/* =====================================================================
+   ESTILO VÍDEO (11-11-2026): la web con el aspecto de los reels de Ceitillo.
+   Solo cambia cómo se ve. Las funciones, los botones y los enlaces son los mismos.
+   Tebeo: tinta negra gruesa, papel pintado crema, amarillo mostaza, sombras
+   duras y movimientos con rebote. Un solo tema claro, como los vídeos.
+   ===================================================================== */
+:root:not(#estilo-video){
+  color-scheme:light;
+  --bg:#F7E9C4; --surface:#FFFBF0; --surface-2:#F6E8C3; --rule:#E7D6AC; --rule-2:#A68B5B;
+  --ink:#17120E; --ink-2:#463A2D; --ink-3:#655440; --accent:#2457B0;
+  --scrim:rgba(23,18,14,.55); --grid-dot:rgba(23,18,14,.08); --shadow:none;
+  --l1:#2a78d6; --l1i:#FFFFFF; --l2:#eb6834; --l2i:#111418; --l3:#00819b; --l3i:#FFFFFF;
+  --l4:#eda100; --l4i:#111418; --l5:#e87ba4; --l5i:#111418; --l6:#008300; --l6i:#FFFFFF;
+  --l7:#a1319b; --l7i:#FFFFFF; --l8:#e34948; --l8i:#111418; --l9:#6250d6; --l9i:#FFFFFF;
+  --l10:#1baf7a; --l10i:#111418;
+  --c1:#86b6ef; --c1i:#111418; --c2:#3987e5; --c2i:#111418; --c3:#1c5cab; --c3i:#FFFFFF; --c4:#0d366b; --c4i:#FFFFFF;
+  --f1:#eba383; --f1i:#111418; --f2:#e08256; --f2i:#111418; --f3:#cb5a1a; --f3i:#111418; --f4:#a53e00; --f4i:#FFFFFF;
+  --yel:#FFD23F; --yel-2:#FFE47A; --yel-3:#FFF4C9; --oil:#F0B020; --red:#D5352B; --blu:#2B5FB4;
+  --cream:#FFF3D6; --wood:#6B4425; --wood-2:#4A2D18;
+  --hs:4px 4px 0 var(--ink); --hs-l:6px 6px 0 var(--ink);
+  --font-b:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-d:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-k:"Bangers","Luckiest Guy",Impact,"Arial Narrow",sans-serif;
+  --font-n:"Luckiest Guy","Bangers",Impact,sans-serif;
+  --r-s:8px; --r-m:16px; --r-p:999px;
+}
+html{font-synthesis:none}
+body{
+  background-color:var(--bg);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='128'%3E%3Cpath fill='%23E9D39C' d='M36.0 19.0L37.3 22.2L40.8 22.5L38.1 24.7L38.9 28.0L36.0 26.2L33.1 28.0L33.9 24.7L31.2 22.5L34.7 22.2ZM84.0 83.0L85.3 86.2L88.8 86.5L86.1 88.7L86.9 92.0L84.0 90.2L81.1 92.0L81.9 88.7L79.2 86.5L82.7 86.2Z'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(90deg,rgba(255,252,240,.5) 0 24px,rgba(255,252,240,0) 24px 48px);
+  color:var(--ink);font-family:var(--font-b);font-weight:500;
+}
+::selection{background:var(--yel);color:var(--ink)}
+
+/* --- tipos de tebeo --- */
+.hero h1,.sec-head h2,.jg-pt-h,.idea h3,.cp-head h3,.quienes-h3,.quienes .quienes-golpe,.pat-banner h3,.cause .c-name,
+.line-head .lh-text h3,.p-top .p-line .ln,.plate .f-title,.blk-h,.best-where,.btn,.nb-dir,.filter-label,.jg-mbtn,.jg-marc,
+.jg-num,.jg-banda,.jg-et,.jg-pts,.jg-rep-h,.jg-que b,.jg-eje,.jg-micro,.brand span{font-family:var(--font-k);font-weight:400;letter-spacing:.04em;text-transform:uppercase}
+.f-big,.stat b,.g-es .g-val,.g-mk .g-val,.badge,.pnum,.jg-val,.jg-cas,.jg-stats b,.jg-marc b,.jg-res,.vb-v{font-family:var(--font-n);font-weight:400;letter-spacing:.01em}
+
+/* --- cabecera --- */
+.top{background:#FFF7E2;border-bottom:3px solid var(--ink);box-shadow:0 3px 0 rgba(23,18,14,.12)}
+.top-in{height:62px}
+.brand span{font-size:clamp(19px,5.2vw,25px);line-height:1;padding-top:.08em;letter-spacing:.03em}
+@media (min-width:760px) and (max-width:899px){.brand span{font-size:18px}.top-nav a{padding-inline:7px}}
+.brand svg circle{stroke:var(--ink)}
+.top-nav a{color:var(--ink);font-size:16px;font-weight:800;border:2.5px solid transparent;border-radius:10px;padding:6px 10px}
+.top-nav a:hover{color:var(--ink);background:var(--yel);border-color:var(--ink)}
+.prog{color:var(--ink);font-weight:800}
+.prog-bar{width:78px;height:14px;background:#fff;border:2.5px solid var(--ink);border-radius:999px}
+.prog-bar span{background:var(--oil)}
+.jg-mini{width:21px;height:21px;background:var(--yel);color:var(--ink);border:2px solid var(--ink);border-radius:50%;font:400 12px/1 var(--font-n);padding-top:.15em}
+
+/* --- botones gordos con sombra dura --- */
+.btn{min-height:50px;padding:.16em 20px 0;border:3px solid var(--ink);border-radius:14px;box-shadow:var(--hs);font-size:21px;line-height:1;
+  transition:transform .12s ease,box-shadow .12s ease,background-color .15s ease}
+.btn-primary,.btn-primary:hover{background:var(--yel);color:var(--ink)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--ink)}
+.btn-small{min-height:44px;padding-inline:15px;font-size:18px}
+.btn .play{margin-top:-.16em}
+.btn svg.ic{margin-top:-.16em}
+@media (hover:hover){
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+  .btn-primary:hover{background:var(--yel-2)}
+  .btn-ghost:hover{background:var(--yel-3)}
+}
+#app .btn:active,.sheet .btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn-text{color:var(--accent);font-weight:800}
+.icon-btn{background:#fff;border:3px solid var(--ink);border-radius:50%;box-shadow:3px 3px 0 var(--ink)}
+.icon-btn:hover{background:var(--yel)}
+.icon-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+
+/* --- portada: Ceitillo presenta el plano --- */
+.hero{padding-block:30px 22px}
+.hero .wrap{display:grid;align-items:start}
+.label,.kicker{justify-self:start;margin:0;background:var(--ink);color:#fff;font:900 13px/1.25 var(--font-b);letter-spacing:.08em;
+  padding:6px 11px 5px;border-radius:8px;box-shadow:3px 3px 0 var(--oil);rotate:-1.5deg}
+.hero h1{margin:16px 0 20px;max-width:15ch;font-size:clamp(52px,12.2vw,100px);line-height:.92;letter-spacing:.025em;
+  color:var(--yel);-webkit-text-stroke:clamp(6px,1.2vw,10px) var(--ink);paint-order:stroke fill;text-shadow:6px 6px 0 var(--ink)}
+.apol{justify-self:start;margin:0;max-width:36ch;background:var(--ink);color:#fff;font:800 16px/1.45 var(--font-b);
+  padding:11px 15px;border-radius:12px;box-shadow:4px 4px 0 var(--oil);rotate:.6deg}
+.hero-art{position:relative;max-width:560px;margin-top:20px;padding-top:clamp(70px,21vw,128px)}
+.hero .fan{position:relative;margin:0}
+.hero .fan > g:last-child{display:none} /* el pasajero del plano: ahora lo hace Ceitillo */
+.hero-cei{position:absolute;right:-2%;bottom:-6px;width:47%;margin:0;pointer-events:none}
+.hero-cei svg{display:block;width:100%;height:auto;overflow:visible}
+.hero-zas{position:absolute;right:43%;top:4%;font:400 clamp(30px,8vw,48px)/1 var(--font-k);letter-spacing:.04em;color:var(--yel);
+  -webkit-text-stroke:7px var(--ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--ink);rotate:-12deg;pointer-events:none}
+@media (min-width:900px){
+  .hero{padding-block:44px 30px}
+  .hero .wrap{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:40px}
+  .hero .kicker,.hero h1,.hero .apol{grid-column:1}
+  .hero-art{grid-column:2;grid-row:1 / span 3;align-self:end;margin-top:0;padding-top:150px}
+}
+
+/* --- banda del juego: pared de madera --- */
+.jg-portada{color:#fff;border-block:3px solid var(--ink);background-color:var(--wood);
+  background-image:repeating-linear-gradient(90deg,rgba(20,10,4,.42) 0 3px,rgba(20,10,4,0) 3px 72px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 36px,rgba(0,0,0,.07) 36px 72px)}
+.jg-pt-h{font-size:clamp(36px,8vw,66px);line-height:.95;color:var(--yel);-webkit-text-stroke:clamp(6px,1.1vw,8px) var(--ink);paint-order:stroke fill;text-shadow:5px 5px 0 var(--ink)}
+.jg-pt-s{color:var(--cream);font-weight:800}
+.jg-pt-btn{background:#fff;color:var(--ink)}
+.jg-mini-r{border-radius:50%;box-shadow:0 0 0 4px var(--ink),6px 6px 0 4px rgba(10,5,2,.45)}
+
+/* --- secciones: titulares en cartel amarillo --- */
+.sec{padding-block:58px 28px;scroll-margin-top:76px}
+.sec-head h2{display:inline-block;margin:0;font-size:clamp(38px,8.4vw,58px);line-height:1;color:var(--ink);background:var(--yel);
+  border:3px solid var(--ink);border-radius:8px;padding:.12em .36em .02em;box-shadow:var(--hs-l);rotate:-1.5deg}
+.sec-head p{font-weight:600;color:var(--ink-2)}
+.lede{font-weight:600;color:var(--ink-2)}
+.plano-tit{gap:20px}
+.jg-titulo{gap:16px}
+.jg-titulo .jg-emb{width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--yel);font-size:32px;padding-top:.12em;box-shadow:3px 3px 0 var(--oil);font-family:var(--font-n);font-weight:400}
+
+/* --- plano de red en una viñeta --- */
+.redwrap{margin-top:22px;background:#fff;border:3px solid var(--ink);border-radius:20px;box-shadow:var(--hs-l);padding:4px 2px}
+.redmap .rl{stroke-width:10}
+.redmap .rt{fill:var(--yel);stroke:var(--ink);stroke-width:2.5}
+.redmap .rs-disc{fill:#fff;stroke:var(--ink);stroke-width:3}
+.redmap .rs.seen .rs-disc{fill:var(--lc)}
+.redmap .rs-n{font:900 9.5px/1 var(--font-b);fill:var(--ink)}
+.redmap .rs.seen .rs-n{fill:var(--li)}
+.redmap .rb circle{fill:var(--lc);stroke:var(--ink);stroke-width:3}
+.redmap .rb text{font:900 13px/1 var(--font-b);fill:var(--li)}
+.redlab{font-weight:800;color:var(--ink)}
+.redhint{font-weight:700;color:var(--ink-3)}
+
+/* --- filtros por causa --- */
+.filter{gap:10px;padding:4px 4px 10px 2px}
+.filter-label{font-size:21px;line-height:1;color:var(--ink);padding-top:.1em}
+.chip{background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 var(--ink);font-weight:800;
+  transition:transform .12s ease,box-shadow .12s ease,background-color .15s ease}
+@media (hover:hover){.chip:hover{background:var(--yel-3);transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}}
+.chip[aria-pressed="true"]{background:var(--yel);color:var(--ink);border-color:var(--ink);transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.chip .cnt,.chip[aria-pressed="true"] .cnt{background:var(--ink);color:#fff;opacity:1;border-radius:999px;padding:2px 7px;font-size:12px;font-weight:900}
+.pat-banner{background:var(--yel-3);border:3px solid var(--ink);border-radius:18px;box-shadow:var(--hs);padding:16px 18px}
+.pat-banner .pb-ic{width:44px;height:44px;background:var(--yel);border:2.5px solid var(--ink);border-radius:50%}
+.pat-banner h3{font-size:25px;line-height:1.05}
+.pat-banner p{font-weight:600}
+.legend{color:var(--ink-2);font-weight:700}
+.lg-dot{width:17px;height:17px;border:2.5px solid var(--ink);background:#fff}
+.lg-dot.full{background:var(--ink-2)}
+.lg-dot.ring{box-shadow:0 0 0 2.5px var(--yel),0 0 0 5px var(--ink)}
+
+/* --- líneas del plano: viñetas con cabecera de color --- */
+.map{gap:24px;margin-top:22px}
+.line{--dot:34px;--trk:14px;--pt:12px;padding:0;gap:0;overflow:visible;background:var(--surface);border:3px solid var(--ink);border-radius:20px;box-shadow:var(--hs-l);scroll-margin-top:84px}
+.line-head{--lhf:26px;margin:0;min-height:calc(66px + 2.04 * var(--lhf));padding:14px 16px;gap:14px;align-items:center;border-bottom:3px solid var(--ink);border-radius:17px 17px 0 0;color:#fff}
+.line-head .badge{width:58px;height:58px;background:#fff;color:var(--ink);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-size:29px;padding-top:.14em}
+.line-head .lh-text h3{font-size:var(--lhf);line-height:1.02;color:#fff;-webkit-text-stroke:6px var(--ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--ink)}
+.line-head .lh-ic,.p-top .lh-ic{width:22px;height:22px;color:#fff;opacity:1;vertical-align:-3px;
+  filter:drop-shadow(1.5px 0 0 #17120E) drop-shadow(-1.5px 0 0 #17120E) drop-shadow(0 1.5px 0 #17120E) drop-shadow(0 -1.5px 0 #17120E)}
+.line-head .lh-count{display:inline-block;margin-top:8px;background:var(--ink);color:#fff;opacity:1;font:800 13px/1.2 var(--font-b);letter-spacing:.04em;padding:4px 9px;border-radius:7px}
+.stops{padding:10px 14px 12px 16px}
+.stops li::before{background:var(--c);border-inline:3px solid var(--ink)}
+.dot{background:#fff;border:4px solid var(--c);box-shadow:0 0 0 3px var(--ink);color:var(--ink);font:900 14px/1 var(--font-b);padding-top:0}
+.stop.seen .dot{background:var(--c);color:var(--ci)}
+.st-name{font:900 17px/1.25 var(--font-b);color:var(--ink)}
+.st-hook{font-weight:600;color:var(--ink-2)}
+.stop:hover .dot{transform:scale(1.14);animation:cMeneo .5s ease}
+.map.filtering .stops li::before{border-color:color-mix(in srgb,var(--ink) 28%,var(--surface))}
+.map.filtering .stop:not(.match) .dot{box-shadow:0 0 0 3px color-mix(in srgb,var(--ink) 28%,var(--surface))}
+.map.filtering .stop.match .dot{box-shadow:0 0 0 3px var(--ink),0 0 0 7px var(--yel),0 0 0 10px var(--ink)}
+/* todas las cabeceras miden lo mismo: caben dos renglones de título y la etiqueta de paradas */
+@media (max-width:379px){.line-head{--lhf:22px}}
+@media (max-width:359px){.line-head{--lhf:20px}}
+@media (max-width:339px){.line-head{gap:10px;padding-inline:12px}.line-head .badge{width:48px;height:48px;font-size:24px}.stops{padding-left:12px}}
+@media (min-width:380px) and (max-width:479px){.line-head{--lhf:24px}}
+@media (min-width:660px) and (max-width:819px){.line-head{--lhf:20px}}
+@media (min-width:1040px){
+  .line-head{margin:0;min-height:88px;padding:14px 20px}
+  .stops{padding:18px 10px 14px}
+  .stops li::before,.stops li:first-child::before,.stops li:last-child::before{border-inline:0;border-block:3px solid var(--ink)}
+}
+
+/* --- tres ideas, países y quiénes: viñetas --- */
+.ideas{gap:24px}
+.idea,.tiles-box,.cpanel{background:var(--surface);border:3px solid var(--ink);border-radius:20px;box-shadow:var(--hs-l);padding:20px 18px}
+.idea h3,.cp-head h3{font-size:30px;line-height:1}
+.idea > p{font-weight:600}
+.g-top{height:64px}
+.g-bar{gap:0}
+.g-band{height:36px;border-block:3px solid var(--ink);border-left:3px solid var(--ink);font-weight:800}
+.g-band:first-child{border-radius:12px 0 0 12px}
+.g-band.b4{border-right:3px solid var(--ink);border-radius:0 12px 12px 0}
+.g-es{gap:3px}
+.g-es .g-name{font-weight:900}
+.g-es .g-val{font-size:34px;color:var(--yel);-webkit-text-stroke:5px var(--ink);paint-order:stroke fill;text-shadow:2px 2px 0 var(--ink)}
+.g-mk .g-name{font-weight:700}
+.g-mk .g-val{font-size:18px}
+.gauge figcaption,.src-line{font-weight:600}
+.stat{border-top:2.5px dashed rgba(23,18,14,.32);padding-block:14px}
+.stat b{font-size:38px;color:var(--yel);-webkit-text-stroke:5px var(--ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--ink)}
+.stat b small{font:900 15px/1 var(--font-b);color:var(--red);-webkit-text-stroke:0;text-shadow:none;margin-left:3px}
+.stat p{font-weight:600}
+.causes{gap:12px}
+.cause{background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:var(--hs);transition:transform .12s ease,box-shadow .12s ease,background-color .15s ease}
+@media (hover:hover){.cause:hover{background:var(--yel-3);border-color:var(--ink);transform:translate(-2px,-2px) rotate(-.6deg);box-shadow:6px 6px 0 var(--ink)}}
+.cause:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.cause .c-ic,.cause:hover .c-ic{width:42px;height:42px;background:var(--yel);border:2.5px solid var(--ink);border-radius:50%}
+.cause .c-name{font-size:22px;line-height:1.05}
+.cause .c-n{font-weight:800;color:var(--ink-2)}
+.cause .c-d{font-weight:600}
+.tiles{gap:6px}
+.tile{border:2px solid rgba(23,18,14,.25);border-radius:8px;font:900 12px/1 var(--font-b);padding-top:0}
+button.tile{border-color:var(--ink);box-shadow:2px 2px 0 var(--ink);transition:transform .15s cubic-bezier(.3,1.6,.5,1)}
+@media (hover:hover){button.tile:hover{transform:scale(1.12) rotate(-4deg)}}
+.tile.home{outline:3px dashed var(--ink);outline-offset:2px}
+.tile[aria-pressed="true"]{box-shadow:0 0 0 3px var(--yel),0 0 0 6px var(--ink)}
+.tiles-out{border-top:2.5px dashed rgba(23,18,14,.32)}
+.tiles-out .out-label,.ramp{font-weight:800;color:var(--ink-2)}
+.ramp i{border:2px solid var(--ink);border-radius:5px}
+.cp-head .tile{border:2.5px solid var(--ink)}
+.cp-head p{font-weight:700}
+.cp-item{border:2.5px solid transparent;border-radius:14px}
+.cp-item:hover{background:var(--yel-3);border-color:var(--ink)}
+.cp-item .dot{width:32px;height:32px;box-shadow:0 0 0 2.5px var(--ink)}
+.cp-txt b{font-weight:900}
+.cp-txt span{font-weight:600}
+.quienes p{font-weight:600}
+.quienes .quienes-golpe{margin:24px 0 28px;font-size:clamp(26px,5.4vw,36px);line-height:1.1;color:var(--ink);background:var(--yel);
+  border:3px solid var(--ink);border-radius:14px;box-shadow:var(--hs-l);padding:16px 18px 12px;rotate:-1deg}
+.quienes-h3{font-size:30px;line-height:1}
+.quienes-reglas{font-weight:600}
+.quienes-reglas li::marker{color:var(--red)}
+
+/* --- pie: madera oscura --- */
+.foot{margin-top:60px;border-top:3px solid var(--ink);color:var(--cream);background-color:var(--wood-2);
+  background-image:repeating-linear-gradient(90deg,rgba(10,5,2,.4) 0 3px,rgba(10,5,2,0) 3px 92px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 46px,rgba(0,0,0,.06) 46px 92px)}
+.foot p{font-weight:600}
+.foot a,.apol-foot strong{color:var(--yel)}
+.apol-foot{color:var(--cream)}
+
+/* --- ficha --- */
+.panel{background:var(--surface);border-left:3px solid var(--ink);transition:transform .46s cubic-bezier(.3,1.45,.55,1),opacity .2s ease}
+@media (max-width:620px){.panel{border-left:0;border-top:3px solid var(--ink)}}
+.p-top{border-bottom:3px solid var(--ink);padding:12px 12px 12px 14px;gap:12px}
+.p-top .badge{width:48px;height:48px;background:#fff;color:var(--ink);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-size:24px;padding-top:.14em}
+.p-top .p-line .ln{font-size:22px;line-height:1.05;color:#fff;-webkit-text-stroke:5px var(--ink);paint-order:stroke fill;text-shadow:2px 2px 0 var(--ink)}
+.p-top .p-pos{align-self:flex-start;margin-top:6px;background:var(--ink);color:#fff;opacity:1;font:800 12px/1.2 var(--font-b);letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px}
+.p-top .icon-btn{background:#fff;color:var(--ink);border:3px solid var(--ink)}
+.p-strip{border-bottom:3px solid var(--ink)}
+.trk{--dot:22px;--trk:6px}
+.tk::before{background:var(--ink)}
+.tk i{background:#fff;border:3px solid var(--ink);transition:transform .2s cubic-bezier(.3,1.6,.5,1)}
+.tk.cur i{background:var(--yel);transform:scale(1.3)}
+.tk:hover i{transform:scale(1.2)}
+.p-seq{margin:12px 16px 4px;background:var(--yel-3);border:2.5px solid var(--ink);border-radius:12px;font-weight:700}
+.p-body{border-top:0}
+.plate{align-items:center;gap:14px;margin:22px 0 18px}
+.pnum{min-width:54px;height:54px;padding:.16em 8px 0;border-radius:12px;font-size:28px;box-shadow:3px 3px 0 var(--oil);rotate:-4deg}
+.plate .f-title{font-size:clamp(28px,7.4vw,35px);line-height:1.02}
+.f-hero{position:relative;margin:8px 0 30px}
+.f-hero::after{content:"";position:absolute;top:-6px;right:2px;width:62px;height:44px;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 40'%3E%3Cg fill='%23FFD23F' stroke='%2317120E' stroke-width='2.4' stroke-linejoin='round'%3E%3Cpath d='M18.0 11.0L21.5 19.1L30.4 20.0L23.7 25.9L25.6 34.5L18.0 30.0L10.4 34.5L12.3 25.9L5.6 20.0L14.5 19.1Z'/%3E%3Cpath d='M44.0 2.5L46.0 7.2L51.1 7.7L47.2 11.1L48.4 16.1L44.0 13.4L39.6 16.1L40.8 11.1L36.9 7.7L42.0 7.2Z'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/contain}
+.f-big{font-size:clamp(66px,21vw,100px);line-height:.98;color:var(--yel);-webkit-text-stroke:9px var(--ink);paint-order:stroke fill;text-shadow:5px 5px 0 var(--ink)}
+.f-big.lg{font-size:clamp(44px,12.6vw,60px);-webkit-text-stroke-width:6px;text-shadow:4px 4px 0 var(--ink)}
+.f-big .u{font-size:34%;letter-spacing:.03em;color:var(--red);-webkit-text-stroke:5px var(--ink);text-shadow:2px 2px 0 var(--ink)}
+.f-big::before{width:58px;height:14px;margin-bottom:16px;background:var(--c);border:3px solid var(--ink);border-radius:999px}
+.f-ctx{font-weight:600;color:var(--ink-2)}
+.blk-h{font-size:22px;line-height:1.05;color:var(--ink)}
+.blk.lead p{font-weight:600}
+.fold{margin-top:14px;padding:0 16px;background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:var(--hs)}
+.blk.lead + .fold{margin-top:24px;border-top:3px solid var(--ink)}
+.fold>summary{min-height:62px;padding:8px 0}
+.fold>summary .blk-h{font-size:22px}
+.fold[open]>summary{margin-bottom:14px;border-bottom:2.5px dashed rgba(23,18,14,.3)}
+.fold>summary::after{border-right-width:3.5px;border-bottom-width:3.5px}
+.fold>:last-child:not(summary){margin-bottom:18px}
+.pic{width:38px;height:38px;background:var(--yel);border:2.5px solid var(--ink);border-radius:50%}
+.pic svg{stroke:var(--ink);stroke-width:2.6}
+.chain{--dot:20px;--trk:12px}
+.chain li::before{background:#fff;box-shadow:0 0 0 2.5px var(--ink)}
+.chain li::after{border-inline:2.5px solid var(--ink)}
+.dash li::before{width:12px;height:4px;background:var(--ink);border-radius:2px}
+.best-where{font-size:24px;line-height:1.05}
+.cchip,.pchip{background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 var(--ink);font-weight:800;transition:transform .12s ease,box-shadow .12s ease}
+@media (hover:hover){.cchip:hover,.pchip:hover{background:var(--yel-3);transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}}
+.cchip:active,.pchip:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.cchip .cc{background:var(--ink);color:#fff;border:0;border-radius:999px;font:900 11px/1 var(--font-b)}
+.hook blockquote{margin:6px 0 20px;padding:16px 18px;background:#fff;border:3px solid var(--ink);border-radius:22px 22px 22px 6px;box-shadow:var(--hs-l);font:800 20px/1.42 var(--font-b)}
+.hook blockquote::before,.hook blockquote::after{font-family:var(--font-n);font-size:1.12em;color:var(--red)}
+.help{font-weight:700}
+.srcs a{font-weight:700;color:var(--accent)}
+.p-nav{gap:10px;padding:12px;background:var(--surface-2);border-top:3px solid var(--ink)}
+.nav-btn{min-height:64px;padding:9px 12px;background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:var(--hs);transition:transform .12s ease,box-shadow .12s ease}
+.nav-btn.prev{border-right:3px solid var(--ink)}
+.nav-btn.next{background:var(--yel);color:var(--ink);border-color:var(--ink)}
+@media (hover:hover){.nav-btn:hover{background:var(--yel-3);transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}.nav-btn.next:hover{background:var(--yel-2);border-color:var(--ink)}}
+.nav-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.nav-btn:disabled,.nav-btn:disabled:hover{opacity:.5;background:#fff;transform:none;box-shadow:none}
+.nb-dir{font-size:17px;line-height:1;opacity:1}
+.nb-name{font-weight:800}
+.tip{background:var(--ink);color:#fff;border-radius:8px;font-weight:800;box-shadow:3px 3px 0 var(--oil)}
+/* cifras dibujadas: casillas con contorno, como en los vídeos */
+.v-svg rect,.v-svg circle{fill:#fff;stroke:var(--ink);stroke-width:1.3}
+.v-svg .on,.v-svg .on rect,.v-svg .on circle,.v-svg .k{fill:var(--c)}
+.v-svg .bo,.v-svg .on.bo{fill:var(--yel)}
+.v-svg .br,.v-ref .v-svg .on{fill:var(--blu)}
+.v-svg text.big{fill:var(--ink);font-family:var(--font-n);font-weight:400}
+.v-svg .pt{fill:var(--ink)}
+.v-svg text{fill:var(--ink-2);font-weight:700;stroke:none}
+.v-svg .ln{stroke-width:4}
+.v-cap{font-weight:600}
+.v-src{display:inline-block;background:var(--ink);color:#fff;font:800 11px/1.3 var(--font-b);letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px} /* como «FUENTE: …» en los vídeos */
+.vb-bar{height:22px;background:#fff;border:2.5px solid var(--ink);border-radius:999px;overflow:hidden}
+.vb-fill{border-right:2.5px solid var(--ink)}
+.vb-fill.bo{background:var(--yel)}
+.vb-fill.br{background:var(--blu)}
+.vb-n{font-weight:800}
+.vb-v{font-size:18px}
+
+/* --- juego --- */
+.jg-mbtn{padding:10px 16px 7px;background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 var(--ink);font-size:18px;line-height:1;
+  transition:transform .12s ease,box-shadow .12s ease}
+.jg-mbtn[aria-pressed="true"]{background:var(--yel);color:var(--ink);transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.jg-marc{font-size:22px}
+.jg-marc b{font-size:32px;color:var(--yel);-webkit-text-stroke:4px var(--ink);paint-order:stroke fill;text-shadow:2px 2px 0 var(--ink)}
+.jg-boc{background:#fff;border-radius:20px;box-shadow:var(--hs);font:800 18px/1.35 var(--font-b)}
+.jg-boc::after{content:"";position:absolute;left:-9px;top:50%;margin-top:-6px;border:6px solid transparent;border-left:0;border-right:9px solid #fff}
+.jg-tim{height:16px;background:#fff;border:2.5px solid var(--ink);border-radius:999px;overflow:hidden}
+.jg-tim i{background:var(--oil)}
+.jg-bon{font-weight:700}
+.jg-num{font-size:21px;color:var(--ink)}
+.jg-pt{width:18px;height:18px;background:#fff;border:2.5px solid var(--ink)}
+.jg-pt.hecho{background:var(--c)}
+.jg-pt.aqui{box-shadow:0 0 0 3px var(--yel),0 0 0 5.5px var(--ink)}
+.jg-dots-g .jg-pt{width:40px;height:40px}
+.jg-eje{background:var(--yel);color:var(--ink);border:4px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-size:20px;padding-top:.1em}
+.jg-girar,.jg-girar:hover{background:var(--yel);color:var(--ink)}
+.jg-banda{border:3px solid var(--ink);border-radius:14px;box-shadow:var(--hs);font-size:22px;line-height:1.1;color:#fff;-webkit-text-stroke:5px var(--ink);paint-order:stroke fill}
+.jg-banda b{font-weight:400}
+.jg-q{font-family:var(--font-b);font-weight:900}
+.jg-lema{font-weight:700}
+.jg-op{background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:var(--hs);font-weight:800}
+.jg-op:has(input:checked){background:var(--yel-2);border-color:var(--ink)}
+.jg-op i{display:none}
+.jg-let{border-radius:50%;background:var(--ink);color:#fff;font:400 16px/1 var(--font-n);padding-top:.14em}
+#juego .jg-op.ok{background:var(--yel);border-color:var(--ink)}
+#juego .jg-op.tu{background:#fff;border-style:dashed}
+.jg-tag{background:var(--ink);color:#fff;padding:5px 8px 4px;border-radius:6px;font-weight:900}
+.jg-val{font-size:clamp(52px,13vw,68px);color:var(--yel);-webkit-text-stroke:7px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink)}
+.jg-range{accent-color:var(--oil)}
+.jg-ext{font-weight:700}
+.jg-panel{border:3px solid var(--ink);border-radius:18px;box-shadow:5px 5px 0 var(--oil)}
+.jg-et{font-size:18px;line-height:1;color:var(--yel)}
+.jg-tu{font:900 24px/1.1 var(--font-b)}
+.jg-cas{background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-radius:8px;padding:.18em .14em 0}
+#juego .jg-res{color:var(--yel);-webkit-text-stroke:5px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink)}
+.jg-pts{font-size:22px}
+.jg-rev{font-weight:700}
+.jg-ana,.jg-que{font-weight:600}
+.jg-que b{font-size:18px}
+.jg-stats li{background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:var(--hs)}
+.jg-stats b{font-size:42px;color:var(--yel);-webkit-text-stroke:5px var(--ink);paint-order:stroke fill}
+.jg-stats span{font-weight:700}
+.jg-rep-h{font-size:24px}
+.jg-rep a{background:#fff;border:3px solid var(--ink);border-left-width:8px;border-radius:12px;box-shadow:3px 3px 0 var(--ink);font-weight:700}
+.jg-billete{background:#fff;border:3px dashed var(--ink);border-radius:14px}
+.jg-sello{color:var(--red);border-color:var(--red);font-family:var(--font-k);font-weight:400}
+.jg-copia{border:3px solid var(--ink);border-radius:12px}
+.jg-fu{font-weight:600}
+
+/* --- movimiento de dibujos animados (se apaga con «reducir movimiento») --- */
+@keyframes cPop{0%{opacity:0;transform:scale(.55) rotate(-5deg)}60%{opacity:1;transform:scale(1.08) rotate(1.5deg)}82%{transform:scale(.97)}100%{opacity:1;transform:none}}
+@keyframes cCae{0%{opacity:0;transform:translateY(-26px)}60%{opacity:1;transform:translateY(5px)}100%{opacity:1;transform:none}}
+@keyframes cSalto{0%{opacity:0;transform:translateY(70px) scale(1,.82)}45%{opacity:1;transform:translateY(-16px) scale(.95,1.07)}70%{transform:translateY(0) scale(1.05,.95)}100%{opacity:1;transform:none}}
+@keyframes cFlota{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes cBarre{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes cMeneo{0%,100%{rotate:0deg}25%{rotate:-9deg}75%{rotate:9deg}}
+@keyframes cBrilla{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.18) rotate(8deg)}}
+@keyframes cEntra{from{opacity:0;transform:translateY(48px) scale(.93)}to{opacity:1;transform:none}}
+@keyframes cSello{from{opacity:0;transform:scale(1.6)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  .hero .kicker{animation:cCae .5s cubic-bezier(.3,1.5,.6,1) .05s both}
+  .hero h1{animation:cPop .65s cubic-bezier(.3,1.5,.55,1) .15s both}
+  .hero .apol{animation:cCae .5s cubic-bezier(.3,1.5,.6,1) .4s both}
+  .hero .fan{animation:cBarre .8s ease-out .3s both}
+  .hero-cei{animation:cSalto .8s cubic-bezier(.3,1.4,.6,1) .55s both}
+  .hero-cei svg{animation:cFlota 3.2s ease-in-out 1.6s infinite}
+  .hero-zas{animation:cPop .45s cubic-bezier(.3,1.8,.5,1) 1.15s both}
+  .p-body .plate{animation:cCae .45s cubic-bezier(.3,1.5,.6,1) both}
+  .p-body .f-big{animation:cPop .6s cubic-bezier(.3,1.5,.55,1) .08s both}
+  .p-body .f-hero::after{animation:cBrilla 1.1s ease-in-out .5s 2}
+  .jg-presen .jg-boc{animation:cPop .45s cubic-bezier(.3,1.6,.55,1) both}
+}
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .line,.redwrap,.idea,.tiles-box,.cpanel,.quienes-golpe{animation:cEntra linear both;animation-timeline:view();animation-range:entry 0% cover 24%}
+    .sec-head h2{animation:cSello linear both;animation-timeline:view();animation-range:entry 10% cover 22%}
+  }
+}
 </style>
 </head>
 <body>
@@ -724,19 +1157,23 @@ body{line-height:1.6}
     <p class="kicker">España, 1976-2026 – 49 problemas estructurales</p>
     <h1>Lo que falla en España, parada a parada</h1>
     <p class="apol">Proyecto apolítico: ni de derechas ni de izquierdas, ni de ningún extremo. Solo queremos un país mejor.</p>
-    <svg class="fan" viewBox="0 0 390 150" aria-hidden="true" fill="none" stroke-linecap="round" stroke-width="9">
-      <path style="stroke:var(--l1)" d="M-10 132H120L170 82H400"/><path style="stroke:var(--l2)" d="M-10 118H112L162 68H400"/>
-      <path style="stroke:var(--l3)" d="M-10 104H104L154 54H400"/><path style="stroke:var(--l4)" d="M-10 90H96L146 40H400"/>
-      <path style="stroke:var(--l5)" d="M-10 76H88L138 26H400"/><path style="stroke:var(--l6)" d="M-10 146H128L178 96H400"/>
-      <path style="stroke:var(--l7)" d="M-10 62H80L130 12H400"/><path style="stroke:var(--l8)" d="M-10 48H72L104 16"/>
-      <path style="stroke:var(--l9)" d="M200 110H400"/><path style="stroke:var(--l10)" d="M230 124H400"/>
-      <g stroke-width="5"><circle style="fill:var(--surface);stroke:var(--l1)" cx="60" cy="132" r="9"/><circle style="fill:var(--surface);stroke:var(--l1)" cx="250" cy="82" r="9"/><circle style="fill:var(--surface);stroke:var(--l2)" cx="330" cy="68" r="9"/><circle style="fill:var(--surface);stroke:var(--l3)" cx="40" cy="104" r="9"/><circle style="fill:var(--surface);stroke:var(--l4)" cx="290" cy="40" r="9"/><circle style="fill:var(--surface);stroke:var(--l9)" cx="200" cy="110" r="9"/><circle style="fill:var(--surface);stroke:var(--l6)" cx="350" cy="96" r="9"/><circle style="fill:var(--surface);stroke:var(--l10)" cx="230" cy="124" r="9"/></g>
-      <g transform="translate(300,74) scale(.2)"><path style="stroke:var(--ink)" stroke-width="22" d="M-34,250 L-46,470 M34,250 L50,470"/><path style="fill:var(--ink)" d="M-62,60 Q0,24 62,60 L96,270 Q0,300 -96,270 Z"/><circle style="fill:var(--surface);stroke:var(--ink)" stroke-width="36" cx="0" cy="-30" r="84"/><circle style="fill:var(--ink)" cx="-20" cy="-48" r="24"/></g>
-    </svg>
+    <div class="hero-art">
+      <svg class="fan" viewBox="0 0 390 150" aria-hidden="true" fill="none" stroke-linecap="round" stroke-width="9">
+        <path style="stroke:var(--l1)" d="M-10 132H120L170 82H400"/><path style="stroke:var(--l2)" d="M-10 118H112L162 68H400"/>
+        <path style="stroke:var(--l3)" d="M-10 104H104L154 54H400"/><path style="stroke:var(--l4)" d="M-10 90H96L146 40H400"/>
+        <path style="stroke:var(--l5)" d="M-10 76H88L138 26H400"/><path style="stroke:var(--l6)" d="M-10 146H128L178 96H400"/>
+        <path style="stroke:var(--l7)" d="M-10 62H80L130 12H400"/><path style="stroke:var(--l8)" d="M-10 48H72L104 16"/>
+        <path style="stroke:var(--l9)" d="M200 110H400"/><path style="stroke:var(--l10)" d="M230 124H400"/>
+        <g stroke-width="5"><circle style="fill:var(--surface);stroke:var(--l1)" cx="60" cy="132" r="9"/><circle style="fill:var(--surface);stroke:var(--l1)" cx="250" cy="82" r="9"/><circle style="fill:var(--surface);stroke:var(--l2)" cx="330" cy="68" r="9"/><circle style="fill:var(--surface);stroke:var(--l3)" cx="40" cy="104" r="9"/><circle style="fill:var(--surface);stroke:var(--l4)" cx="290" cy="40" r="9"/><circle style="fill:var(--surface);stroke:var(--l9)" cx="200" cy="110" r="9"/><circle style="fill:var(--surface);stroke:var(--l6)" cx="350" cy="96" r="9"/><circle style="fill:var(--surface);stroke:var(--l10)" cx="230" cy="124" r="9"/></g>
+        <g transform="translate(300,74) scale(.2)"><path style="stroke:var(--ink)" stroke-width="22" d="M-34,250 L-46,470 M34,250 L50,470"/><path style="fill:var(--ink)" d="M-62,60 Q0,24 62,60 L96,270 Q0,300 -96,270 Z"/><circle style="fill:var(--surface);stroke:var(--ink)" stroke-width="36" cx="0" cy="-30" r="84"/><circle style="fill:var(--ink)" cx="-20" cy="-48" r="24"/></g>
+      </svg>
+      <figure class="hero-cei" aria-hidden="true"><svg viewBox="-330 -880 760 960" focusable="false"></svg></figure>
+      <span class="hero-zas" aria-hidden="true">¡PAF!</span>
+    </div>
   </div>
 </section>
 
-<section class="jg-portada" aria-labelledby="jgP-h"><div class="jg-pw"><div><span class="jg-emb" aria-hidden="true">?</span><h2 class="jg-pt-h" id="jgP-h">¿Cuánto sabes de tu país?</h2><p class="jg-pt-s">5 preguntas. 10 líneas. Gira la ruleta.</p><a class="btn jg-pt-btn" href="#juego">Jugar ahora</a></div><div class="jg-mini-r" aria-hidden="true"></div></div></section>
+<section class="jg-portada" aria-labelledby="jgP-h"><div class="jg-pw"><div><span class="jg-emb" aria-hidden="true">?</span><h2 class="jg-pt-h" id="jgP-h">¿Cuánto sabes de tu país?</h2><p class="jg-pt-s" id="jgPtS">Reto de hoy: 5 preguntas.</p><a class="btn jg-pt-btn" href="#juego">Jugar ahora</a></div><div class="jg-mini-r" aria-hidden="true"></div></div></section>
 <section class="sec" id="plano" aria-labelledby="plano-h">
   <div class="wrap">
     <div class="sec-head">
@@ -827,7 +1264,7 @@ body{line-height:1.6}
   <div class="wrap">
     <div class="sec-head">
       <div class="jg-titulo"><span class="jg-emb" aria-hidden="true">?</span><h2 id="juego-h">¿Cuánto sabes de tu país?</h2></div>
-      <p>Cinco preguntas, una por línea. Responde y mira el dato.</p>
+      <p>Reto de hoy: cinco preguntas, las mismas para todo el que juegue. O la ruleta libre, sin límite.</p>
     </div>
     <div class="jg" id="jg"></div>
     <p class="sr" id="jgLive" aria-live="polite"></p>
@@ -909,13 +1346,13 @@ const F = [
 {n:1,l:1,t:"Comprar o alquilar",tl:"Precios récord y casas que no se construyen",m:"Independizarse: 30,2 años",v:"30,2 años",
 k:"es la edad media a la que se independiza un joven en España. En la UE, 26,3.",
 g:"Un joven español se independiza a los 30 años; la media europea, a los 26.",
-q:"La vivienda lleva doce años subiendo y ya supera el máximo de la burbuja de 2007. Cada año se forman muchos más hogares de los que se construyen.",
+q:"La vivienda lleva doce años subiendo y está en niveles del máximo de la burbuja de 2007, o por encima según el índice que se mire. Cada año se forman muchos más hogares de los que se construyen.",
 p:["Desde 2014 la demanda (empleo, inmigración, inversores y turismo) crece mucho más rápido que la obra nueva.","Se forman unos 240.000 hogares al año y en 2025 se terminaron 92.000 casas: faltan unas 750.000."],
 x:["Convertir suelo en edificable exige años de planeamiento, y los planes se anulan a menudo en los tribunales.","Estado, comunidades y ayuntamientos se reparten las competencias."],
-bp:"Japón y Alemania",b:"Tokio construye unas 145.000 viviendas al año con permisos automáticos si el proyecto cumple la norma, y mantiene los precios estables. Alemania fue el único país europeo que construyó más casas que hogares nuevos entre 2021 y 2025.",
+bp:"Japón",b:"Tokio empezó unas 130.000 viviendas en el año fiscal 2024 con permisos automáticos si el proyecto cumple la norma.",
 o:"Unos priorizan limitar precios con la Ley de Vivienda; otros, liberar suelo y agilizar licencias. Los críticos de los topes señalan que la oferta de alquiler cayó al 0,69% del parque.",
-s:[["Eurostat, emancipación 2025", "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260915-1"], ["Banco de España, Informe Anual 2025", "https://www.bde.es/f/webbe/SES/Secciones/Publicaciones/PublicacionesAnuales/InformesAnuales/25/InfAnual_2025.pdf"]],
-c:[["JP","Tokio construye unas 145.000 viviendas al año con permisos automáticos si el proyecto cumple la norma."],["DE","Fue el único país europeo que construyó más casas que hogares nuevos entre 2021 y 2025."]]},
+s:[["Eurostat, emancipación 2025", "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260915-1"], ["Banco de España, Informe Anual 2025", "https://www.bde.es/f/webbe/SES/Secciones/Publicaciones/PublicacionesAnuales/InformesAnuales/25/InfAnual_2025.pdf"], ["Gobierno Metropolitano de Tokio, viviendas empezadas", "https://www.metro.tokyo.lg.jp/information/press/2025/11/2025111002"]],
+c:[["JP","Tokio empezó unas 130.000 viviendas en el año fiscal 2024 con permisos automáticos si el proyecto cumple la norma."]]},
 
 {n:2,l:1,t:"Vivienda social",tl:"Casi no hay vivienda social",m:"<2% del parque",v:"<2%",
 k:"de las viviendas son de alquiler social, según la OCDE. En Países Bajos, en torno al 34%.",
@@ -1930,6 +2367,7 @@ window.addEventListener('scroll', hideTip, {passive:true});
 /* ---------- init ---------- */
 (function(){ var top = $('.top'), hero = $('#inicio'); if (!('IntersectionObserver' in window) || !hero) return; top.classList.add('at-hero'); new IntersectionObserver(function(es){ top.classList.toggle('at-hero', es[0].isIntersecting); }, {rootMargin:'-58px 0px 0px 0px'}).observe(hero); })();
 window.visHTML = visHTML;
+window.go = go;
 window.UIC = UIC;
 renderMap();
 renderRed();
@@ -1942,28 +2380,215 @@ if (location.hash === '#plano' || location.hash === '#paises'){ var tgt = docume
 </script>
 
 <script>
-const BANCO = [{"n":5,"l":1,"formato":"cuatro","pregunta":"De cada 100 municipios, ¿cuántos tienen menos de 1.000 habitantes?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["41","51","61","71"],"correcta":2,"tolerancia":null,"revelacion":"4.975 de los 8.132 municipios tienen menos de 1.000 habitantes: seis de cada diez.","analogia":"Entre diez pueblos elegidos al azar, seis cabrían enteros en un pabellón de 1.000 personas.","campos":"v «4.975»; k «8.132 municipios… seis de cada diez»","soloVIS":"61: F solo dice «seis de cada diez»; VIS da 61,2 % (4.975 / 8.132 = 61,18 %)","sinVisual":false,"hacer":"Crear una agencia que coordine empleo, vivienda y conectividad en las zonas que pierden población, como hace Escocia en las Highlands desde 1965."},{"n":8,"l":2,"formato":"dos","pregunta":"Del agua potable, ¿cuánta se pierde o no se registra antes de facturarla?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["1 litro de cada 20","Casi 1 litro de cada 4"],"correcta":1,"tolerancia":null,"revelacion":"El 23,5 % del agua potable se pierde o no se registra antes de facturarla: casi uno de cada cuatro litros.","analogia":"Llenas cuatro garrafas en la fuente y casi una entera se derrama o nadie la apunta.","campos":"v «23,5%»; k «se pierde o no se registra antes de facturarla»; g «casi uno de cada cuatro litros»","soloVIS":null,"sinVisual":true,"hacer":"Penalizar a las empresas que pierdan más del 10% del agua, como hace Dinamarca desde los años 90."},{"n":11,"l":3,"formato":"cuatro","pregunta":"¿Cuántos días se espera de media para operarse?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["60 días","122 días","180 días","240 días"],"correcta":1,"tolerancia":null,"revelacion":"122 días de espera media para operarse. Hay 853.740 personas en lista, un récord.","analogia":"Si te apuntan a la lista el 1 de marzo, la espera media te lleva al 1 de julio.","campos":"v «122 días»; k «853.740 personas en lista, récord»","soloVIS":null,"sinVisual":false,"hacer":"Garantizar por ley un diagnóstico en 30 días y un tratamiento en otros 30, como hace Dinamarca."},{"n":15,"l":4,"formato":"masmenos","pregunta":"Abandono escolar temprano: la media de la UE es 9,1 %. ¿Y España?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Más de 9,1 %","Menos de 9,1 %"],"correcta":0,"tolerancia":null,"revelacion":"España: 12,8 % de abandono escolar temprano en 2025. La media de la UE es 9,1 % y Portugal está en el 6,1 %.","analogia":"De cada 100 jóvenes, casi 13 dejaron los estudios antes de tiempo en España. En Portugal, 6.","campos":"v «12,8%»; k «en 2025. Media de la UE: 9,1%. Portugal: 6,1%»","soloVIS":null,"sinVisual":false,"hacer":"Mantener políticas contra el abandono escolar más allá de los cambios de gobierno, como hizo Portugal para bajarlo del 40% al 6,1%."},{"n":23,"l":5,"formato":"mito","pregunta":"Cuatro de cada diez titulares de explotaciones agrarias tienen más de 65 años.","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Verdadero","Mito"],"correcta":0,"tolerancia":null,"revelacion":"Verdadero: el 40 % de los titulares de explotaciones agrarias tiene más de 65 años. Solo el 9 % tiene menos de 41.","analogia":"De cien titulares de finca reunidos en una asamblea, 40 pasan de 65 años y 9 no llegan a 41.","campos":"v «40%»; k «más de 65 años. Solo el 9% tiene menos de 41»; g «cuatro de cada diez»","soloVIS":null,"sinVisual":false,"hacer":"Crear sociedades públicas que intervengan en las ventas de tierras para instalar a jóvenes agricultores, como hace Francia con las SAFER desde los años 60."},{"n":24,"l":6,"formato":"deslizador","pregunta":"Repartida a partes iguales, ¿cuánta deuda pública toca por habitante?","min":10000,"max":80000,"paso":1000,"unidad":"€","opciones":null,"correcta":35000,"tolerancia":6000,"revelacion":"Unos 35.000 euros por habitante. La deuda pública es de 1,75 billones de euros, el 99,7 % del PIB.","analogia":"Repartida a partes iguales, a cada vecino de tu escalera, bebés incluidos, le tocarían unos 35.000 euros.","campos":"v «1,75 billones»; k «99,7% del PIB y unos 35.000 euros por habitante»","soloVIS":null,"sinVisual":false,"hacer":"Encadenar superávits presupuestarios para reducir la deuda, como hace Portugal en los últimos años."},{"n":31,"l":7,"formato":"cuatro","pregunta":"¿Cuánto tiempo estuvo caducado el mandato del órgano de los jueces (CGPJ)?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["2 años","5,5 años","8 años","10 años"],"correcta":1,"tolerancia":null,"revelacion":"5,5 años: de 2018 a 2024 el órgano de gobierno de los jueces siguió con el mandato caducado.","analogia":"Como un delegado de clase cuyo mandato acabó y sigue en el puesto cinco cursos y medio más.","campos":"v «5,5 años»; k «órgano de gobierno de los jueces (CGPJ), de 2018 a 2024»","soloVIS":null,"sinVisual":false,"hacer":"Dejar que los jueces elijan al menos a la mitad de los miembros de su órgano de gobierno, como piden los estándares del Consejo de Europa."},{"n":36,"l":8,"formato":"cuatro","pregunta":"Licencia de obra nueva en diez grandes municipios: ¿cuánto tardaba de media?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["1 mes","3 meses","6 meses","12 meses"],"correcta":3,"tolerancia":null,"revelacion":"12 meses de media en diez grandes municipios (2020), aunque la norma prevé tres. En Polonia, unos 45 días.","analogia":"Pides el permiso en septiembre: en Polonia lo tienes a mediados de octubre; aquí, el septiembre siguiente.","campos":"v «12 meses»; k «diez grandes municipios (EY y Asprima, 2020), aunque la norma prevé tres. En Polonia, unos 45 días»","soloVIS":null,"sinVisual":false,"hacer":"Encargar a entidades que verifiquen los proyectos, como hace Rivas-Vaciamadrid, que bajó sus plazos de cuatro a dos meses y medio."},{"n":43,"l":9,"formato":"cuatro","pregunta":"De 2016 a 2025, ¿por cuánto se multiplicaron las estafas informáticas registradas?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Por 2","Por 3","Por 6","Por 10"],"correcta":2,"tolerancia":null,"revelacion":"De 70.178 estafas informáticas en 2016 a 430.493 en 2025: más de seis veces. Son delitos conocidos, no todos los cometidos.","analogia":"Donde en 2016 se registraba una estafa, en 2025 se registran algo más de seis.","campos":"v «430.493»; k «en 2025. En 2016 fueron 70.178»; m «×6 en nueve años»; o «delitos conocidos, no todos los cometidos»","soloVIS":"«más de seis veces» es una cuenta (430.493 / 70.178 = 6,13); F solo trae «×6» en m","sinVisual":false,"hacer":"Obligar a los bancos a reembolsar a las víctimas de transferencias fraudulentas, como hace Reino Unido desde 2024."},{"n":49,"l":10,"formato":"cuatro","pregunta":"¿Desde qué año tiene España la hora de Europa central?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["1940","1959","1978","1986"],"correcta":0,"tolerancia":null,"revelacion":"Desde 1940. En verano, el reloj va más de dos horas por delante del sol en casi todo el país.","analogia":"Es como llevar en verano el reloj de la cocina más de dos horas por delante del sol. El cambio se hizo en 1940 y sigue.","campos":"v «1940»; k «adoptó la hora de Europa central. En verano… más de dos horas por delante del sol en casi todo el país»","soloVIS":"«86 años» (1940-2026) solo está en VIS y caduca cada enero: se deja fuera del texto","sinVisual":true,"hacer":"Adoptar la hora de Greenwich, como hace Portugal en la misma longitud que Galicia."}];
+// Ceitillo de Jaén · jarrita de aceite con asa y corcho (variante 1A, elegida por Ibai el 10-11-2026).
+// Personaje propio dibujado al modo del tebeo español clásico: narizota con las gafas a caballo, ojazos pegados,
+// sonrisa de dientes, orejón, manos grandes y zapatones. No copia a ningún personaje existente.
+// ceitillo(pose) devuelve un <g> SVG con cada pieza en su grupo con nombre. Origen: suelo entre los pies. Y negativa = arriba.
+(function (root) {
+  const C = { ink: '#17120e', oil: '#f0b020', oil2: '#cf8a0e', nariz: '#f7c84a', glass: '#dbe7c0', shine: '#fff7d6', corcho: '#cb965c', corcho2: '#a5733d',
+    label: '#fbf3dc', leaf: '#6f8f2a', white: '#fffdf5', piel: '#f3c39a', zapato: '#2a2622', boca: '#4a1210', lengua: '#e3564a', sudor: '#bfe6f2', rojo: '#d5352b' };
+  const D = { bob: 0, lean: 0, sq: 0, mira: 1, look: [0, 0], ojos: 'normal', ceja: [0, 0], cejaRot: [0, 0], boca: 'sonrisa',
+    handL: [-235, -205], handR: [235, -205], shapeL: 'abierta', shapeR: 'abierta', rotL: null, rotR: null, codoL: 1, codoR: 1, frontL: false, frontR: false,
+    footL: [-75, 0], footR: [85, 0], dirL: -1, dirR: 1, frotL: 0, frotR: 0, rodL: 1, rodR: 1, sudor: 0, sombra: true };
+  const BODY = 'M-138 0Q-160 0 -160 -24L-168 -372C-170 -462 -122 -494 -58 -516L-52 -600L52 -600L58 -516C122 -494 170 -462 168 -372L160 -24Q160 0 138 0Z';
+  const HIP = 150, FONT = "Bangers, 'Komika Axis', Impact, sans-serif";
+  let uid = 0;
+  const n = v => Math.round(v * 10) / 10;
+  const st = (w, c) => `fill="none" stroke="${c || C.ink}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"`;
+
+  function ik(S, H, l1, l2, dir) {
+    let dx = H[0] - S[0], dy = H[1] - S[1], d = Math.hypot(dx, dy) || 1; const m = l1 + l2 - 2;
+    if (d > m) { dx *= m / d; dy *= m / d; d = m; H = [S[0] + dx, S[1] + dy]; }
+    const a = (l1 * l1 - l2 * l2 + d * d) / (2 * d), h = Math.sqrt(Math.max(0, l1 * l1 - a * a));
+    const mx = S[0] + dx / 2, my = S[1] + dy / 2, jx = S[0] + dx / d * a - dy / d * h * dir, jy = S[1] + dy / d * a + dx / d * h * dir;
+    const cx = mx + (jx - mx) * 1.7, cy = my + (jy - my) * 1.7;
+    return { d: `M${n(S[0])} ${n(S[1])}Q${n(cx)} ${n(cy)} ${n(H[0])} ${n(H[1])}`, H, rot: Math.atan2(H[1] - cy, H[0] - cx) * 180 / Math.PI + 90 };
+  }
+
+  // Mano grande de tebeo: cuatro dedos largos y abiertos más el pulgar. Muñeca en (0,0), dedos hacia -y. m = 1 pulgar a la izquierda.
+  function mano(shape, m) {
+    const py = -34, lines = [], bumps = [];
+    const F = (ang, len, w) => { const r = ang * Math.PI / 180, s = Math.sin(r), c = Math.cos(r); lines.push([s * 16, py - c * 16, s * (16 + len), py - c * (16 + len), w || 16]); };
+    const B = (ang, rad) => { const r = ang * Math.PI / 180; bumps.push([Math.sin(r) * 26, py - Math.cos(r) * 26, rad || 11]); };
+    if (shape === 'abierta') { F(-46, 42); F(-16, 56); F(12, 58); F(40, 46); F(-104, 30, 17); }
+    else if (shape === 'senalar') { F(-8, 70); B(26); B(54, 11); B(80, 10); F(-98, 26, 17); }
+    else if (shape === 'puno') { B(-46); B(-16, 12); B(14, 12); B(42); B(68, 10); F(-104, 12, 17); }
+    let ink = `<ellipse cx="0" cy="${py}" rx="34" ry="36" fill="${C.ink}"/>`, sk = `<ellipse cx="0" cy="${py}" rx="28" ry="30" fill="${C.piel}"/>`;
+    lines.forEach(l => { ink += `<path d="M${n(l[0])} ${n(l[1])}L${n(l[2])} ${n(l[3])}" ${st(l[4] + 11)}/>`; sk += `<path d="M${n(l[0])} ${n(l[1])}L${n(l[2])} ${n(l[3])}" ${st(l[4], C.piel)}/>`; });
+    bumps.forEach(b => { ink += `<circle cx="${n(b[0])}" cy="${n(b[1])}" r="${b[2] + 5.5}" fill="${C.ink}"/>`; sk += `<circle cx="${n(b[0])}" cy="${n(b[1])}" r="${b[2]}" fill="${C.piel}"/>`; });
+    const pliegue = shape === 'abierta' ? `<path d="M-16 -48Q0 -56 18 -46" ${st(4)}/>` : '';
+    return `<g transform="scale(${m},1)">${ink}${sk}${pliegue}<rect x="-21" y="-10" width="42" height="22" rx="5" fill="${C.white}" stroke="${C.ink}" stroke-width="6"/></g>`;
+  }
+
+  // Zapatón largo de punta levantada, con tacón. Tobillo en (0,0), punta hacia +x, suela en y≈40.
+  function zapato() {
+    return `<rect x="-34" y="30" width="34" height="18" rx="3" fill="${C.zapato}" stroke="${C.ink}" stroke-width="7"/>` +
+      `<path d="M-24 -6C-30 -26 8 -28 20 -12C62 -18 122 -20 158 -46C188 -62 206 -28 190 -2C178 18 152 34 118 34L-22 34C-40 34 -36 6 -24 -6Z" fill="${C.zapato}" stroke="${C.ink}" stroke-width="8" stroke-linejoin="round"/>` +
+      `<path d="M150 -30Q174 -40 182 -18" ${st(6, C.white)}/><path d="M30 6Q60 0 90 2" ${st(4, '#5a534b')}/><path d="M-26 35H120" ${st(9)}/>`;
+  }
+
+  // Bocas (coordenadas de la cara: origen en el puente de la nariz, mirando a la derecha)
+  const MEJILLA = `<path d="M-80 68Q-58 84 -68 110" ${st(7)}/>`, BARBILLA = `<path d="M-10 204Q50 220 108 192" ${st(6)}/>`;
+  const DIENTES = `<path d="M150 104Q60 150 -64 92Q-44 176 40 178Q128 170 150 104Z" fill="${C.white}" stroke="${C.ink}" stroke-width="8" stroke-linejoin="round"/><path d="M-30 121V148M5 134V168M40 139V173M75 136V171M110 127V158" ${st(4)}/>`;
+  const ARRIBA = `<path d="M-46 108Q60 150 142 112L134 128Q60 164 -40 126Z" fill="${C.white}" stroke="${C.ink}" stroke-width="4" stroke-linejoin="round"/>`;
+  const BOCAS = {
+    sonrisa: DIENTES + MEJILLA + BARBILLA,
+    dientes: DIENTES + `<path d="M-52 128Q40 166 136 130" ${st(4)}/>` + MEJILLA,
+    habla: `<path d="M150 104Q60 140 -60 96Q-52 204 40 208Q132 198 150 104Z" fill="${C.boca}" stroke="${C.ink}" stroke-width="8" stroke-linejoin="round"/>` + ARRIBA + `<path d="M-16 180Q30 154 92 180Q40 204 -16 180Z" fill="${C.lengua}" stroke="${C.ink}" stroke-width="4"/>` + MEJILLA,
+    habla2: `<path d="M146 106Q60 140 -54 98Q-44 168 40 172Q124 166 146 106Z" fill="${C.boca}" stroke="${C.ink}" stroke-width="8" stroke-linejoin="round"/>` + ARRIBA + MEJILLA,
+    grito: `<path d="M152 100Q60 132 -72 88Q-80 252 40 258Q146 248 152 100Z" fill="${C.boca}" stroke="${C.ink}" stroke-width="8" stroke-linejoin="round"/>` + ARRIBA +
+      `<path d="M-30 220Q30 176 104 216Q40 252 -30 220Z" fill="${C.lengua}" stroke="${C.ink}" stroke-width="4"/><path d="M40 168V196" ${st(5)}/>`,
+    serio: `<path d="M140 122Q90 134 40 122Q-10 112 -58 126" ${st(8)}/>`,
+    triste: `<path d="M140 152Q40 96 -58 142" ${st(8)}/><path d="M-72 150Q-58 136 -48 152" ${st(6)}/>`,
+    o: `<ellipse cx="64" cy="146" rx="26" ry="32" fill="${C.boca}" stroke="${C.ink}" stroke-width="8"/>`
+  };
+
+  function ojo(cx, cy, rx, ry, p, lado) {
+    const t = p.ojos; let s;
+    if (t === 'cerrado') s = `<path d="M${cx - rx * 0.8} ${cy + 6}Q${cx} ${cy + 36} ${cx + rx * 0.8} ${cy + 6}" ${st(8)}/>`;
+    else if (t === 'feliz') s = `<path d="M${cx - rx * 0.8} ${cy + 14}Q${cx} ${cy - 34} ${cx + rx * 0.8} ${cy + 14}" ${st(8)}/>`;
+    else {
+      const k = t === 'susto' ? 1.12 : 1, RX = rx * k, RY = ry * k, sus = t === 'susto';
+      const px = cx + (sus ? 2 : 12) + p.look[0] * (RX - 16), py = cy + (sus ? 0 : 20) + p.look[1] * (RY - 26);
+      s = `<ellipse cx="${cx}" cy="${cy}" rx="${n(RX)}" ry="${n(RY)}" fill="${C.white}" stroke="${C.ink}" stroke-width="8"/><ellipse id="pupila_${lado}" cx="${n(px)}" cy="${n(py)}" rx="${sus ? 5 : 7}" ry="${sus ? 6 : 11}" fill="${C.ink}"/>`;
+      if (t === 'medio' || t === 'enfado') {
+        const f = t === 'enfado' ? 0.05 : -0.1, y = cy + RY * f, hw = RX * Math.sqrt(1 - f * f);
+        s += `<path d="M${n(cx - hw)} ${n(y)}A${n(RX)} ${n(RY)} 0 0 1 ${n(cx + hw)} ${n(y)}Z" fill="${C.oil}" stroke="${C.ink}" stroke-width="8" stroke-linejoin="round"/>`;
+      }
+    }
+    return `<g id="ojo_${lado}" transform="rotate(-6 ${cx} ${cy})">${s}</g>`;
+  }
+
+  function ceitillo(pose) {
+    const p = Object.assign({}, D, pose || {}), id = 'ct' + (++uid);
+    const yb = -(HIP + p.bob), a = p.lean * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a), sx = 1 + p.sq, sy = 1 - p.sq;
+    const T = (x, y) => { x *= sx; y *= sy; return [x * ca - y * sa, x * sa + y * ca + yb]; };
+    const aL = ik(T(-150, -300), p.handL, 118, 118, p.codoL), aR = ik(T(150, -300), p.handR, 118, 118, -p.codoR);
+    const lL = ik(T(-62, -8), [p.footL[0], p.footL[1] - 40], 84, 84, p.rodL), lR = ik(T(62, -8), [p.footR[0], p.footR[1] - 40], 84, 84, -p.rodR);
+    const brazo = (h, l) => `<g id="brazo_${l}"><path d="${h.d}" ${st(24)}/><path d="${h.d}" ${st(13, C.white)}/></g>`;
+    const pierna = (h, l) => `<g id="pierna_${l}"><path d="${h.d}" ${st(17)}/></g>`;
+    const zap = (h, dir, rot, l) => `<g id="zapato_${l}" transform="translate(${n(h.H[0])} ${n(h.H[1])}) rotate(${rot}) scale(${dir},1)">${zapato()}</g>`;
+    const man = (h, rot, shape, m, l) => `<g id="mano_${l}" transform="translate(${n(h.H[0])} ${n(h.H[1])}) rotate(${n(rot == null ? h.rot : rot)})">${mano(shape, m)}</g>`;
+    // jarrita
+    const AS = 'M-50 -586C-180 -626 -226 -520 -154 -474';
+    const asa = `<g id="asa" transform="scale(${p.mira},1)"><path d="${AS}" ${st(27)}/><path d="${AS}" ${st(13, C.glass)}/></g>`;
+    const corcho = `<g id="corcho"><path d="M-46 -676Q0 -690 46 -676L40 -598L-40 -598Z" fill="${C.corcho}" stroke="${C.ink}" stroke-width="11" stroke-linejoin="round"/><path d="M-22 -660h10M10 -648h12M-8 -632h8" ${st(5, C.corcho2)}/></g>`;
+    const vidrio = `<g id="vidrio"><path d="${BODY}" fill="${C.glass}"/></g>`;
+    const aceite = `<clipPath id="${id}"><path d="${BODY}"/></clipPath><g id="aceite" clip-path="url(#${id})"><path d="M-200 -468Q0 -482 200 -462L200 30L-200 30Z" fill="${C.oil}"/>` +
+      `<path d="M150 -442V40" ${st(46, C.oil2)}/><path d="M-200 -468Q0 -482 200 -462" ${st(6)}/>` +
+      `<path d="M-134 -420V-230" ${st(16, C.shine)}/><path d="M-130 -196v18" ${st(14, C.shine)}/></g>`;
+    const contorno = `<g id="contorno"><path d="${BODY}" ${st(13)}/><path d="M168 -372L160 -24Q160 0 138 0L-60 0" ${st(16)}/></g>`;
+    const labio = `<g id="boca_jarra"><rect x="-62" y="-626" width="124" height="36" rx="16" fill="${C.glass}" stroke="${C.ink}" stroke-width="11"/></g>`;
+    const etiqueta = `<g id="etiqueta" transform="rotate(-2 0 -72)"><rect x="-116" y="-124" width="232" height="104" rx="6" fill="${C.label}" stroke="${C.ink}" stroke-width="7"/>` +
+      `<text x="0" y="-70" text-anchor="middle" font-family="${FONT}" font-size="50" fill="${C.ink}" letter-spacing="3">CEITILLO</text>` +
+      `<text x="0" y="-35" text-anchor="middle" font-family="${FONT}" font-size="28" fill="${C.leaf}" letter-spacing="2">DE JAÉN</text></g>`;
+    // cara (origen en el puente de la nariz)
+    const cj = (d, i, cx, l) => `<g id="ceja_${l}" transform="translate(0 ${-p.ceja[i]}) rotate(${p.cejaRot[i]} ${cx} -148)"><path d="${d}" ${st(10)}/></g>`;
+    const lente = (cx, cy, rx, ry, l) => `<g id="lente_${l}"><ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="${C.white}" stroke="${C.ink}" stroke-width="12"/><path d="M${n(cx - rx * 0.45)} ${n(cy - ry * 0.1)}Q${n(cx - rx * 0.4)} ${n(cy - ry * 0.55)} ${cx} ${n(cy - ry * 0.62)}" ${st(4, '#cfe3ea')}/></g>`;
+    const cara = `<g id="cara" transform="translate(${24 * p.mira} -350) scale(${p.mira},1)">` +
+      `<g id="oreja"><ellipse cx="-200" cy="-34" rx="27" ry="36" fill="${C.oil}" stroke="${C.ink}" stroke-width="8"/><path d="M-190 -54Q-216 -50 -208 -28Q-202 -12 -192 -22" ${st(5)}/></g>` +
+      ojo(-38, -70, 34, 50, p, 'izq') + ojo(32, -76, 38, 56, p, 'der') + cj('M-74 -136Q-48 -152 -16 -142', 0, -44, 'izq') + cj('M10 -152Q44 -166 78 -146', 1, 44, 'der') +
+      `<g id="arrugas"><path d="M-84 -66l-18 -8M-86 -48l-20 2" ${st(5)}/></g><g id="boca">${BOCAS[p.boca] || BOCAS.sonrisa}</g>` + lente(186, -28, 23, 36, 'lejos') +
+      `<g id="nariz"><path d="M-2 12C16 -22 150 -18 196 20C230 52 204 96 150 96C90 96 20 78 -6 52" fill="${C.nariz}" stroke="${C.ink}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M170 8Q198 16 204 40" ${st(6, C.shine)}/></g>` +
+      `<g id="patilla"><path d="M120 -16L-196 -40" ${st(11)}/></g>` + lente(148, -20, 30, 42, 'cerca') + `</g>`;
+    const sudor = [[-214, -470, -20], [-150, -560, -8], [120, -566, 14], [-236, -380, -30], [210, -480, 26]].slice(0, p.sudor).map(g =>
+      `<path transform="translate(${g[0]} ${g[1]}) rotate(${g[2]})" d="M0 -26C-12 -6 -12 10 0 10C12 10 12 -6 0 -26Z" fill="${C.sudor}" stroke="${C.ink}" stroke-width="5" stroke-linejoin="round"/>`).join('');
+    const cuerpo = `<g id="cuerpo" transform="translate(0 ${n(yb)}) rotate(${p.lean}) scale(${n(sx)},${n(sy)})">${asa}${corcho}${vidrio}${aceite}${contorno}${labio}${etiqueta}${cara}<g id="sudor">${sudor}</g></g>`;
+    const sombra = p.sombra ? `<g id="sombra"><ellipse cx="6" cy="6" rx="${n(200 - p.bob * 0.4)}" ry="20" fill="${C.ink}" opacity="0.16"/></g>` : '';
+    return `<g id="ceitillo">${sombra}${pierna(lL, 'izq')}${pierna(lR, 'der')}${zap(lL, p.dirL, p.frotL, 'izq')}${zap(lR, p.dirR, p.frotR, 'der')}` +
+      (p.frontL ? '' : brazo(aL, 'izq')) + (p.frontR ? '' : brazo(aR, 'der')) + cuerpo + (p.frontL ? brazo(aL, 'izq') : '') + (p.frontR ? brazo(aR, 'der') : '') +
+      man(aL, p.rotL, p.shapeL, -1, 'izq') + man(aR, p.rotR, p.shapeR, 1, 'der') + `</g>`;
+  }
+
+  const POSES = {
+    neutra: {},
+    saluda: { handR: [310, -540], rotR: 20, handL: [-230, -190], boca: 'habla', ceja: [8, 8], lean: 3, ojos: 'feliz' },
+    senala: { handR: [350, -470], shapeR: 'senalar', rotR: 70, handL: [-230, -200], look: [0.6, -0.4], boca: 'habla', lean: 4 },
+    dato: { handL: [-260, -540], shapeL: 'senalar', rotL: -6, handR: [236, -200], boca: 'habla2', ceja: [10, 10], look: [0, -0.4] },
+    si: { handR: [270, -230], shapeR: 'puno', handL: [-240, -200], ojos: 'feliz', boca: 'sonrisa', lean: 7, ceja: [8, 8] },
+    no: { handR: [320, -520], shapeR: 'senalar', rotR: 6, handL: [-236, -180], shapeL: 'puno', ojos: 'medio', boca: 'serio', cejaRot: [10, -10], ceja: [-6, -6], lean: -3 },
+    susto: { handL: [-290, -500], handR: [300, -520], rotL: -30, rotR: 30, ojos: 'susto', boca: 'o', ceja: [26, 26], sq: -0.07, bob: 26, sudor: 4, footL: [-110, 0], footR: [120, 0] },
+    grito: { handL: [-300, -450], handR: [310, -500], rotL: -40, rotR: 40, shapeL: 'puno', shapeR: 'puno', ojos: 'susto', boca: 'grito', ceja: [22, 22], lean: -4, sudor: 2 },
+    piensa: { handL: [-266, -420], rotL: 34, handR: [236, -196], look: [-0.5, -0.9], boca: 'serio', cejaRot: [0, -14], ceja: [0, 12], lean: -3 },
+    duda: { handL: [-310, -300], handR: [320, -210], rotL: -70, rotR: 70, boca: 'serio', ojos: 'medio', cejaRot: [-12, 12], ceja: [10, 10] },
+    apuro: { handL: [-262, -350], rotL: 24, handR: [240, -200], boca: 'dientes', ceja: [14, 14], sudor: 3, look: [-0.7, 0.1] },
+    enfado: { handL: [-250, -160], handR: [250, -160], shapeL: 'puno', shapeR: 'puno', boca: 'dientes', ojos: 'enfado', cejaRot: [18, -18], ceja: [-14, -14], lean: 3 },
+    hundido: { handL: [-200, -120], handR: [200, -120], boca: 'triste', ojos: 'medio', cejaRot: [-18, 18], ceja: [4, 4], look: [0, 0.7], sq: 0.05, lean: 5, sudor: 1 },
+    corre: { footL: [-200, -30], footR: [190, -80], frotL: 24, frotR: -30, dirL: 1, dirR: 1, rodL: -1, rodR: -1, handL: [-280, -330], handR: [290, -170], shapeL: 'puno', shapeR: 'puno', lean: 14, bob: 40, boca: 'grito', ojos: 'susto', sudor: 3 },
+    celebra: { handL: [-280, -580], handR: [290, -600], rotL: -20, rotR: 20, boca: 'habla', ojos: 'feliz', ceja: [18, 18], bob: 90, sq: -0.06, footL: [-130, -60], footR: [140, -60], frotL: 20, frotR: -20 }
+  };
+
+  root.ceitillo = ceitillo; root.CEITILLO = { C, D, POSES, BOCAS: Object.keys(BOCAS), MANOS: ['abierta', 'senalar', 'puno'], mano, zapato };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+const BANCO = [{"n":1,"l":1,"formato":"deslizador","pregunta":"¿A qué edad, de media, se independiza un joven en España?","min":18,"max":50,"paso":0.1,"unidad":"años","opciones":null,"correcta":30.2,"tolerancia":2,"revelacion":"30,2 años de media para independizarse en España. La media de la UE es de 26,3 años.","analogia":"Casi cuatro años más tarde que la media de la UE, que son 26,3.","campos":"v «30,2 años»; k «es la edad media a la que se independiza un joven en España. En la UE, 26,3»","soloVIS":null,"sinVisual":false,"hacer":"Dar permisos automáticos a los proyectos que cumplan la norma, como hace Tokio, que empezó unas 130.000 viviendas en el año fiscal 2024."},{"n":2,"l":1,"formato":"masmenos","pregunta":"¿Son más o menos del 2 % las viviendas de alquiler social en España?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Menos de 2 %","Más de 2 %"],"correcta":0,"tolerancia":null,"revelacion":"Menos de 2 %, según la OCDE. En Países Bajos, en torno al 34 % de las viviendas es de alquiler social.","analogia":null,"campos":"v «<2%»; k «de las viviendas son de alquiler social, según la OCDE. En Países Bajos, en torno al 34%»","soloVIS":null,"sinVisual":true,"hacer":"Dejar que asociaciones sin ánimo de lucro gestionen vivienda social, como en Países Bajos, donde gestionan un tercio del parque."},{"n":3,"l":1,"formato":"deslizador","pregunta":"¿Cuántos pisos turísticos anunciados había en la ciudad de Madrid?","min":1000,"max":35000,"paso":1,"unidad":"pisos","opciones":null,"correcta":12637,"tolerancia":3000,"revelacion":"12.637 pisos turísticos anunciados en Madrid, cuando el registro estatal solo tenía 1.283 activos.","analogia":"Casi diez veces más que los 1.283 activos del registro estatal.","campos":"v «12.637»; k «pisos turísticos anunciados en la ciudad de Madrid, cuando el registro estatal solo tenía 1.283 activos»","soloVIS":null,"sinVisual":false,"hacer":"Exigir registro y limitar las noches al año del alquiler turístico, como hace Japón desde 2018: un máximo de 180 noches."},{"n":4,"l":1,"formato":"dos","pregunta":"En Francia, ¿cuánto tarda el prefecto en decidir un desalojo?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Unos 48 días","48 horas"],"correcta":1,"tolerancia":null,"revelacion":"48 horas. En España, la vía judicial puede durar meses o años.","analogia":null,"campos":"v «48 h»; k «tarda el prefecto francés en decidir un desalojo. En España, la vía judicial puede durar meses o años»","soloVIS":null,"sinVisual":true,"hacer":"Decidir el desalojo sin pasar por el juez, como hace Francia desde 2007, con una reforma reforzada en 2020 y 2023."},{"n":5,"l":1,"formato":"cuatro","pregunta":"De cada 100 municipios, ¿cuántos tienen menos de 1.000 habitantes?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["41","51","61","71"],"correcta":2,"tolerancia":null,"revelacion":"4.975 de los 8.132 municipios tienen menos de 1.000 habitantes: seis de cada diez.","analogia":"Entre diez pueblos elegidos al azar, seis cabrían enteros en un pabellón de 1.000 personas.","campos":"v «4.975»; k «8.132 municipios… seis de cada diez»","soloVIS":"61: F solo dice «seis de cada diez»; VIS da 61,2 % (4.975 / 8.132 = 61,18 %)","sinVisual":false,"hacer":"Crear una agencia que coordine empleo, vivienda y conectividad en las zonas que pierden población, como hace Escocia en las Highlands desde 1965."},{"n":7,"l":2,"formato":"masmenos","pregunta":"Europa pide un 15 % de interconexión eléctrica en 2030. ¿Tiene la Península más o menos?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Más de 15 %","Menos de 15 %"],"correcta":1,"tolerancia":null,"revelacion":"Menos de 15 %: la Península tiene un 2 % de interconexión con el resto de Europa, según Red Eléctrica.","analogia":null,"campos":"v «2%»; k «es la interconexión eléctrica de la Península con el resto de Europa, según Red Eléctrica. La UE pide el 15% en 2030»","soloVIS":null,"sinVisual":true,"hacer":"Mallar las redes eléctricas con los vecinos para que, si uno falla, los demás lo sostengan, como hace el centro de Europa."},{"n":8,"l":2,"formato":"dos","pregunta":"Del agua potable, ¿cuánta se pierde o no se registra antes de facturarla?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["1 litro de cada 20","Casi 1 litro de cada 4"],"correcta":1,"tolerancia":null,"revelacion":"El 23,5 % del agua potable se pierde o no se registra antes de facturarla: casi uno de cada cuatro litros.","analogia":"Llenas cuatro garrafas en la fuente y casi una entera se derrama o nadie la apunta.","campos":"v «23,5%»; k «se pierde o no se registra antes de facturarla»; g «casi uno de cada cuatro litros»","soloVIS":null,"sinVisual":true,"hacer":"Penalizar a las empresas que pierdan más del 10% del agua, como hace Dinamarca desde los años 90."},{"n":9,"l":2,"formato":"deslizador","pregunta":"¿Cuánto déficit de conservación acumulan las carreteras, en millones de euros?","min":1000,"max":40000,"paso":1,"unidad":"M€","opciones":null,"correcta":13491,"tolerancia":3000,"revelacion":"13.491 millones de euros de déficit de conservación. Se invierten unos 2.000 millones al año.","analogia":"Ponerse al día costaría casi siete años de inversión al ritmo actual de 2.000 millones al año.","campos":"v «13.491 M€»; k «de déficit de conservación de carreteras. Se invierten unos 2.000 millones al año»; g «casi siete años de toda la inversión actual»","soloVIS":null,"sinVisual":false,"hacer":"Cobrar una viñeta anual que financie la red de carreteras, como hacen Suiza y Austria."},{"n":11,"l":3,"formato":"cuatro","pregunta":"¿Cuántos días se espera de media para operarse?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["60 días","122 días","180 días","240 días"],"correcta":1,"tolerancia":null,"revelacion":"122 días de espera media para operarse. Hay 853.740 personas en lista, un récord.","analogia":"Si te apuntan a la lista el 1 de marzo, la espera media te lleva al 1 de julio.","campos":"v «122 días»; k «853.740 personas en lista, récord»","soloVIS":null,"sinVisual":false,"hacer":"Garantizar por ley un diagnóstico en 30 días y un tratamiento en otros 30, como hace Dinamarca."},{"n":12,"l":3,"formato":"deslizador","pregunta":"¿Cuántos días de espera de media tiene quien no logra cita de médico de familia en uno o dos días?","min":1,"max":30,"paso":0.01,"unidad":"días","opciones":null,"correcta":10.27,"tolerancia":3,"revelacion":"10,27 días de espera media entre quienes no logran cita en uno o dos días. En 2025 eran 9,15.","analogia":null,"campos":"v «10,27 días»; k «de espera media para el médico de familia entre quienes no logran cita en uno o dos días (7 de cada 10). En 2025 eran 9,15»","soloVIS":null,"sinVisual":false,"hacer":"Fijar un máximo de 48 horas para dar cita de médico de familia, como reclama la OCU."},{"n":13,"l":3,"formato":"deslizador","pregunta":"¿Cuántos psicólogos hay en la sanidad pública por cada 100.000 habitantes?","min":0,"max":40,"paso":1,"unidad":"por 100.000 hab.","opciones":null,"correcta":6,"tolerancia":4,"revelacion":"6 psicólogos por cada 100.000 habitantes en la sanidad pública (dato de 2018). La referencia europea que se cita es 18.","analogia":"En una ciudad de 100.000 vecinos, la sanidad pública tendría 6 psicólogos; la referencia citada son 18.","campos":"v «6»; k «psicólogos en la sanidad pública por cada 100.000 habitantes (último dato oficial, de 2018). La referencia europea que se cita es de 18»","soloVIS":null,"sinVisual":false,"hacer":"Ofrecer terapia psicológica pública en atención primaria, como hace Reino Unido desde 2008."},{"n":15,"l":4,"formato":"masmenos","pregunta":"Abandono escolar temprano: la media de la UE es 9,1 %. ¿Y España?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Más de 9,1 %","Menos de 9,1 %"],"correcta":0,"tolerancia":null,"revelacion":"España: 12,8 % de abandono escolar temprano en 2025. La media de la UE es 9,1 % y Portugal está en el 6,1 %.","analogia":"De cada 100 jóvenes, casi 13 dejaron los estudios antes de tiempo en España. En Portugal, 6.","campos":"v «12,8%»; k «en 2025. Media de la UE: 9,1%. Portugal: 6,1%»","soloVIS":null,"sinVisual":false,"hacer":"Mantener políticas contra el abandono escolar más allá de los cambios de gobierno, como hizo Portugal para bajarlo del 40% al 6,1%."},{"n":16,"l":4,"formato":"masmenos","pregunta":"¿Trabaja más o menos del 21,4 % de los titulados superiores en un puesto que no pide su título?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Más de 21,4 %","Menos de 21,4 %"],"correcta":0,"tolerancia":null,"revelacion":"Más de 21,4 %: el 34 % de los titulados superiores trabaja en un puesto que no pide su título. La media de la UE es 21,4 %.","analogia":null,"campos":"v «34%»; k «de los titulados superiores trabaja en un puesto que no pide su título. Media de la UE: 21,4%»","soloVIS":null,"sinVisual":false,"hacer":"Impulsar la FP dual, como Suiza, donde dos de cada tres jóvenes la eligen al acabar la escuela obligatoria."},{"n":17,"l":4,"formato":"deslizador","pregunta":"¿Qué porcentaje del PIB dedica España a investigación y desarrollo (I+D)?","min":0,"max":4,"paso":0.01,"unidad":"% del PIB","opciones":null,"correcta":1.5,"tolerancia":0.4,"revelacion":"1,50 % del PIB en I+D en 2024, un récord. La UE invierte el 2,26 % y Suecia, el 3,53 %.","analogia":"Suecia pone 3,53 euros de cada 100 en I+D; España, 1,50.","campos":"v «1,50%»; k «del PIB se invierte en I+D (2024, récord). La UE invierte el 2,26% y Suecia, el 3,53%»; g «Suecia invierte en investigación más del doble que España»","soloVIS":null,"sinVisual":false,"hacer":"Hacer que las empresas ejecuten la mayor parte del gasto en I+D, como hace Suecia, que dedica el 3,53 % del PIB."},{"n":18,"l":5,"formato":"cuatro","pregunta":"¿Cuál es la tasa de paro juvenil en España?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["12,5 %","18,9 %","23,3 %","31,4 %"],"correcta":2,"tolerancia":null,"revelacion":"Paro juvenil del 23,3 %, frente al 7 % de Alemania. Con récord de ocupados, el paro total sigue en el 10,18 %.","analogia":"De cada 100 jóvenes que buscan empleo, unos 23 no lo encuentran.","campos":"v «10,18%»; k «Paro juvenil: 23,3%»; g «el juvenil, en el 23,3%, frente al 7% alemán»","soloVIS":null,"sinVisual":false,"hacer":"Formar a los jóvenes con FP dual, como Alemania, que tiene el paro juvenil más bajo de la UE."},{"n":19,"l":5,"formato":"cuatro","pregunta":"Según la OCDE, ¿cuánto ha variado el poder de compra del salario real desde comienzos de 2021?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Ha subido un 2 %","Ha bajado un 2 %","Ha bajado un 8 %","Ha subido un 6 %"],"correcta":1,"tolerancia":null,"revelacion":"Un 2 % menos de poder de compra que en 2021: la economía crece, pero el sueldo de la mayoría compra menos.","analogia":null,"campos":"v «−2%»; k «de poder de compra del salario real frente a comienzos de 2021, según la OCDE»; q «el sueldo de la mayoría compra menos que hace cinco años»","soloVIS":null,"sinVisual":false,"hacer":"Lograr que el salario real suba como en Francia o Portugal, un 27 % y un 26 % en tres décadas."},{"n":20,"l":5,"formato":"cuatro","pregunta":"Cada día laborable, ¿cuántos trabajadores faltan al trabajo?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Unos 160.000","Unos 600.000","Unos 4,5 millones","Unos 1,6 millones"],"correcta":3,"tolerancia":null,"revelacion":"1,6 millones de trabajadores faltan cada día; el 77,4 % por baja médica. El coste en 2025 fue de 59.109 millones.","analogia":null,"campos":"v «1,6 M»; k «de trabajadores faltan cada día al trabajo, el 77,4% por baja médica. Coste en 2025: 59.109 millones»","soloVIS":null,"sinVisual":false,"hacer":"Obligar a empresa y trabajador a pactar un plan de reincorporación en las primeras semanas de baja, como hace Países Bajos."},{"n":21,"l":5,"formato":"cuatro","pregunta":"¿A partir de cuántos empleados se multiplican las obligaciones de una empresa?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["10","25","50","100"],"correcta":2,"tolerancia":null,"revelacion":"Desde 50 empleados. Hay un 23,9 % menos de empresas de ese tamaño de lo esperable.","analogia":null,"campos":"v «−23,9%»; k «de empresas de 50 empleados frente a lo esperable: a partir de ahí se multiplican las obligaciones»; g «Desde 50 empleados se multiplican las obligaciones»","soloVIS":null,"sinVisual":false,"hacer":"Crear un tejido sólido de empresas medianas exportadoras, como el Mittelstand alemán, con menos microempresas."},{"n":22,"l":5,"formato":"deslizador","pregunta":"¿Cuántos millones de turistas internacionales llegaron a España en 2025?","min":40,"max":120,"paso":0.1,"unidad":"millones","opciones":null,"correcta":96.8,"tolerancia":8,"revelacion":"96,8 millones de turistas internacionales en 2025, récord: casi dos por cada habitante.","analogia":null,"campos":"v «96,8 M»; k «de turistas internacionales en 2025, récord: casi dos por cada habitante»","soloVIS":null,"sinVisual":false,"hacer":"Limitar cruceros, hoteles y alquileres turísticos para proteger los barrios, como hace Ámsterdam."},{"n":23,"l":5,"formato":"mito","pregunta":"Cuatro de cada diez titulares de explotaciones agrarias tienen más de 65 años.","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Verdadero","Mito"],"correcta":0,"tolerancia":null,"revelacion":"Verdadero: el 40 % de los titulares de explotaciones agrarias tiene más de 65 años. Solo el 9 % tiene menos de 41.","analogia":"De cien titulares de finca reunidos en una asamblea, 40 pasan de 65 años y 9 no llegan a 41.","campos":"v «40%»; k «más de 65 años. Solo el 9% tiene menos de 41»; g «cuatro de cada diez»","soloVIS":null,"sinVisual":false,"hacer":"Crear sociedades públicas que intervengan en las ventas de tierras para instalar a jóvenes agricultores, como hace Francia con las SAFER desde los años 60."},{"n":24,"l":6,"formato":"deslizador","pregunta":"Repartida a partes iguales, ¿cuánta deuda pública toca por habitante?","min":10000,"max":80000,"paso":1000,"unidad":"€","opciones":null,"correcta":35000,"tolerancia":6000,"revelacion":"Unos 35.000 euros por habitante. La deuda pública es de 1,75 billones de euros, el 99,7 % del PIB.","analogia":"Repartida a partes iguales, a cada vecino de tu escalera, bebés incluidos, le tocarían unos 35.000 euros.","campos":"v «1,75 billones»; k «99,7% del PIB y unos 35.000 euros por habitante»","soloVIS":null,"sinVisual":false,"hacer":"Encadenar superávits presupuestarios para reducir la deuda, como hace Portugal en los últimos años."},{"n":25,"l":6,"formato":"cuatro","pregunta":"¿Cuántos presupuestos nuevos se aprobaron en la legislatura 2023-2026?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Ninguno","Uno","Dos","Tres"],"correcta":0,"tolerancia":null,"revelacion":"Ninguno: en toda la legislatura 2023-2026 no se aprobaron presupuestos nuevos; las cuentas de 2023 se prorrogaron tres veces.","analogia":null,"campos":"v «0»; k «presupuestos nuevos en toda la legislatura 2023-2026. Las cuentas de 2023 se prorrogaron tres veces»","soloVIS":null,"sinVisual":false,"hacer":"Votar el presupuesto como un paquete cerrado dentro de un techo de gasto plurianual, como hace Suecia."},{"n":26,"l":6,"formato":"deslizador","pregunta":"¿Cuántos millones de euros transfirió el Estado a la Seguridad Social en 2025?","min":10000,"max":120000,"paso":1,"unidad":"M€","opciones":null,"correcta":47815,"tolerancia":10000,"revelacion":"47.815 millones transferidos en 2025, un 11 % más que en 2024. Aun así, la Seguridad Social cerró con un déficit de 7.387 millones.","analogia":null,"campos":"v «47.815 M€»; k «transfirió el Estado a la Seguridad Social en 2025, un 11% más que en 2024. Aun así, cerró con un déficit de 7.387 millones»","soloVIS":null,"sinVisual":false,"hacer":"Adoptar un mecanismo automático que ajuste las pensiones si el sistema se desequilibra, como hace Suecia desde los 90."},{"n":27,"l":6,"formato":"cuatro","pregunta":"¿Qué parte del coste de un sueldo medio de soltero se va en impuestos y cotizaciones?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["28,3 %","41,4 %","36,7 %","47,9 %"],"correcta":1,"tolerancia":null,"revelacion":"41,4 %, frente a una media de la OCDE del 35,1 %. España ocupa el puesto 10-11 de 38 países.","analogia":"De cada 100 euros de coste de un sueldo medio, unos 41 se van en impuestos y cotizaciones.","campos":"v «41,4%»; k «del coste de un sueldo medio (soltero) se va en impuestos y cotizaciones. Media OCDE: 35,1%»; q «España ocupa el puesto 10-11 de 38»","soloVIS":null,"sinVisual":false,"hacer":"Actualizar cada año los tramos del impuesto sobre la renta con la inflación, como hacen EE. UU. y Francia."},{"n":28,"l":6,"formato":"cuatro","pregunta":"¿cuánto dejó de ingresar Hacienda como máximo en 2022 por rentas no declaradas en el IRPF?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Hasta 5.000 millones","Hasta 15.000 millones","Hasta 51.000 millones","Hasta 120.000 millones"],"correcta":2,"tolerancia":null,"revelacion":"Hasta 51.000 millones como máximo. La horquilla de Fedea va de 21.000 a 51.000 millones.","analogia":null,"campos":"v «51.000 M€»; k «dejó de ingresar Hacienda, como máximo, en 2022 por rentas no declaradas en el IRPF. La horquilla de Fedea va de 21.000 a 51.000 millones»","soloVIS":null,"sinVisual":false,"hacer":"Combinar pagos casi siempre digitales con declaraciones prellenadas con datos de terceros, como Suecia y Dinamarca."},{"n":29,"l":6,"formato":"cuatro","pregunta":"¿De qué año es el modelo de financiación autonómica que sigue vigente?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["2009","1997","2001","2015"],"correcta":0,"tolerancia":null,"revelacion":"Es de 2009 y debía revisarse en 2014. El nuevo modelo, aprobado en 2026, queda para el próximo Gobierno.","analogia":null,"campos":"v «2009»; k «es el año del modelo de financiación autonómica vigente. Debía revisarse en 2014»; x «Con las Cortes disueltas, queda para el próximo Gobierno»","soloVIS":null,"sinVisual":false,"hacer":"Pactar la reforma con todas las comunidades a la vez, como hizo Alemania con sus 16 estados."},{"n":30,"l":7,"formato":"deslizador","pregunta":"¿Cuántos días tarda de media un pleito civil en el Tribunal Supremo?","min":100,"max":1000,"paso":1,"unidad":"días","opciones":null,"correcta":750,"tolerancia":90,"revelacion":"750 días de media en 2024. La mediana de la UE es de 205 días.","analogia":"Casi cuatro veces más que la mediana europea.","campos":"v «750 días»; k «tarda de media un pleito civil en el Supremo (dato de 2024). La mediana de la UE es de 205»; g «casi cuatro veces más que la mediana europea»","soloVIS":null,"sinVisual":false,"hacer":"Tramitar los procesos de forma digital, como hace Estonia desde hace casi dos décadas."},{"n":31,"l":7,"formato":"cuatro","pregunta":"¿Cuánto tiempo estuvo caducado el mandato del órgano de los jueces (CGPJ)?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["2 años","5,5 años","8 años","10 años"],"correcta":1,"tolerancia":null,"revelacion":"5,5 años: de 2018 a 2024 el órgano de gobierno de los jueces siguió con el mandato caducado.","analogia":"Como un delegado de clase cuyo mandato acabó y sigue en el puesto cinco cursos y medio más.","campos":"v «5,5 años»; k «órgano de gobierno de los jueces (CGPJ), de 2018 a 2024»","soloVIS":null,"sinVisual":false,"hacer":"Dejar que los jueces elijan al menos a la mitad de los miembros de su órgano de gobierno, como piden los estándares del Consejo de Europa."},{"n":32,"l":7,"formato":"cuatro","pregunta":"En percepción de corrupción (2025), ¿qué nota de 100 saca España?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["45","55","60","70"],"correcta":1,"tolerancia":null,"revelacion":"55 sobre 100, la peor nota de la serie, que empieza en 2012. Dinamarca saca 89.","analogia":null,"campos":"v «55/100»; k «en percepción de corrupción (2025), la peor nota de la serie, que empieza en 2012. Puesto 49 de 182. Dinamarca saca 89»","soloVIS":null,"sinVisual":false,"hacer":"Reconocer el derecho de cualquier ciudadano a consultar los documentos públicos, como hace Suecia desde 1766."},{"n":33,"l":7,"formato":"cuatro","pregunta":"¿Cuántos decretos-ley se aprobaron en la legislatura 2023-2026?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["63","27","48","91"],"correcta":0,"tolerancia":null,"revelacion":"63 decretos-ley frente a 34 leyes: por primera vez hay más decretos que leyes, según el recuento del BOE de noviembre de 2026.","analogia":null,"campos":"v «63 / 34»; k «decretos-ley frente a leyes en la XV legislatura (2023-2026), según el recuento del BOE a 9 de noviembre de 2026»; g «por primera vez hay más decretos que leyes»","soloVIS":null,"sinVisual":false,"hacer":"Obligar al Parlamento a convertir cada decreto-ley en ley en 60 días y permitir enmiendas, como hace Italia."},{"n":34,"l":7,"formato":"mito","pregunta":"Los españoles confían más en los partidos políticos que en las Fuerzas Armadas.","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Verdadero","Mito"],"correcta":1,"tolerancia":null,"revelacion":"Mito: confían en las Fuerzas Armadas, con 6,96 sobre 10, y en los partidos sacan 2,92 (CIS, 2026).","analogia":null,"campos":"v «2,92»; k «sobre 10 de confianza en los partidos (CIS, 2026). Las Fuerzas Armadas, únicas que aprueban, sacan 6,96»","soloVIS":null,"sinVisual":false,"hacer":"Fijar las grandes políticas en acuerdos amplios entre partidos que sobrevivan a los cambios de gobierno, como los forlig de Dinamarca."},{"n":35,"l":8,"formato":"cuatro","pregunta":"Una cita de extranjería es gratuita. ¿Cuánto llega a pagarse por ella en el mercado negro?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["50 €","120 €","300 €","600 €"],"correcta":3,"tolerancia":null,"revelacion":"Hasta 600 euros. Redes con bots acaparan las citas gratuitas y las revenden.","analogia":null,"campos":"v «600 €»; k «puede llegar a costar en el mercado negro una cita de extranjería que es gratis»; q «Redes con bots acaparan las citas gratuitas y las revenden»","soloVIS":null,"sinVisual":false,"hacer":"Aplicar el principio de una sola vez: que la administración no pida un dato que ya tiene, como hace Estonia."},{"n":36,"l":8,"formato":"cuatro","pregunta":"Licencia de obra nueva en diez grandes municipios: ¿cuánto tardaba de media?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["1 mes","3 meses","6 meses","12 meses"],"correcta":3,"tolerancia":null,"revelacion":"12 meses de media en diez grandes municipios (2020), aunque la norma prevé tres. En Polonia, unos 45 días.","analogia":"Pides el permiso en septiembre: en Polonia lo tienes a mediados de octubre; aquí, el septiembre siguiente.","campos":"v «12 meses»; k «diez grandes municipios (EY y Asprima, 2020), aunque la norma prevé tres. En Polonia, unos 45 días»","soloVIS":null,"sinVisual":false,"hacer":"Encargar a entidades que verifiquen los proyectos, como hace Rivas-Vaciamadrid, que bajó sus plazos de cuatro a dos meses y medio."},{"n":37,"l":8,"formato":"deslizador","pregunta":"¿Cuántas páginas de boletines oficiales habría que leer al día para estar al día de las normas de 2023?","min":500,"max":9000,"paso":1,"unidad":"páginas","opciones":null,"correcta":3494,"tolerancia":700,"revelacion":"3.494 páginas al día para estar al día de las normas de 2023. Las comunidades generan cuatro de cada cinco.","analogia":null,"campos":"v «3.494»; k «páginas de boletines oficiales al día habría que leer para estar al día de las normas de 2023»; p «Las comunidades generan cuatro de cada cinco páginas de los boletines»","soloVIS":null,"sinVisual":false,"hacer":"Reconocer mutuamente las normas entre regiones, como hace la UE desde 1979."},{"n":38,"l":8,"formato":"dos","pregunta":"De la plantilla del Estado, ¿cuánta se jubilará en diez años?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Uno de cada dos","Uno de cada cuatro"],"correcta":0,"tolerancia":null,"revelacion":"49,5 %: 89.690 personas, y apenas hay jóvenes para relevarlas.","analogia":null,"campos":"v «49,5%»; k «de la plantilla del Estado se jubilará en diez años: 89.690 personas»; g «Uno de cada dos empleados del Estado se jubilará en diez años»","soloVIS":null,"sinVisual":false,"hacer":"Reclutar a recién graduados con un programa de entrada cuya selección dure meses, no años, como hace Reino Unido."},{"n":39,"l":9,"formato":"deslizador","pregunta":"¿Cuántas personas llegaron de forma irregular a España en 2025?","min":5000,"max":120000,"paso":1,"unidad":"personas","opciones":null,"correcta":36775,"tolerancia":6000,"revelacion":"36.775 llegadas irregulares en 2025, un 42,6 % menos que el año anterior. Las rutas se desplazan hacia Baleares y Ceuta.","analogia":null,"campos":"v «36.775»; k «llegadas irregulares en todo 2025, un 42,6% menos que el año anterior»; q «las rutas se desplazan hacia Baleares y Ceuta»","soloVIS":null,"sinVisual":false,"hacer":"Planificar la inmigración legal con un plan anual de cupos y selección por puntos, como hace Canadá."},{"n":40,"l":9,"formato":"deslizador","pregunta":"¿Cuántos menores llegados solos tutelaba Canarias a mediados de 2025?","min":500,"max":20000,"paso":1,"unidad":"menores","opciones":null,"correcta":5685,"tolerancia":1000,"revelacion":"5.685 menores llegados solos a mediados de 2025, con plazas ordinarias para 737. En enero de 2026 tutelaba a 4.389.","analogia":"Casi ocho veces las plazas ordinarias: 5.685 menores frente a 737 plazas.","campos":"v «5.685»; k «menores llegados solos tutelaba Canarias a mediados de 2025, con plazas ordinarias para 737»; o «en enero de 2026 tutelaba a 4.389»","soloVIS":null,"sinVisual":false,"hacer":"Repartir a los menores no acompañados con una fórmula automática basada en población e ingresos, como hace Alemania."},{"n":41,"l":9,"formato":"deslizador","pregunta":"¿Cuántas solicitudes recibió la regularización de 2026?","min":200000,"max":3000000,"paso":1,"unidad":"solicitudes","opciones":null,"correcta":1174978,"tolerancia":150000,"revelacion":"1.174.978 solicitudes, cuando el Gobierno esperaba unas 750.000: un 57 % más de las previstas.","analogia":"Unas 425.000 solicitudes más de las que esperaba el Gobierno.","campos":"v «1.174.978»; k «solicitudes de regularización en 2026. El Gobierno esperaba unas 750.000»","soloVIS":null,"sinVisual":false,"hacer":"Resolver el asilo con un procedimiento acelerado de como máximo 140 días, como hace Suiza desde 2019."},{"n":42,"l":9,"formato":"mito","pregunta":"Desde abril de 2026, el hurto leve con tres condenas previas se castiga con cárcel.","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Verdadero","Mito"],"correcta":0,"tolerancia":null,"revelacion":"Verdadero. En Barcelona, 470 personas acumularon 4.001 detenciones por 9.726 delitos en 2025.","analogia":null,"campos":"v «470»; k «470 personas acumularon 4.001 detenciones por 9.726 delitos en Barcelona en 2025»; q «Desde abril de 2026, con tres condenas previas el hurto leve se castiga con cárcel»","soloVIS":null,"sinVisual":false,"hacer":"Aplicar a los delincuentes habituales internamientos de hasta dos años con tratamiento de adicciones, como hace Países Bajos desde 2004."},{"n":43,"l":9,"formato":"cuatro","pregunta":"De 2016 a 2025, ¿por cuánto se multiplicaron las estafas informáticas registradas?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Por 2","Por 3","Por 6","Por 10"],"correcta":2,"tolerancia":null,"revelacion":"De 70.178 estafas informáticas en 2016 a 430.493 en 2025: más de seis veces. Son delitos conocidos, no todos los cometidos.","analogia":"Donde en 2016 se registraba una estafa, en 2025 se registran algo más de seis.","campos":"v «430.493»; k «en 2025. En 2016 fueron 70.178»; m «×6 en nueve años»; o «delitos conocidos, no todos los cometidos»","soloVIS":"«más de seis veces» es una cuenta (430.493 / 70.178 = 6,13); F solo trae «×6» en m","sinVisual":false,"hacer":"Obligar a los bancos a reembolsar a las víctimas de transferencias fraudulentas, como hace Reino Unido desde 2024."},{"n":46,"l":10,"formato":"masmenos","pregunta":"En 2024, ¿cuántos hijos tuvo de media cada mujer en España, por encima o por debajo de 1,5?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Más de 1,5 hijos","Menos de 1,5 hijos"],"correcta":1,"tolerancia":null,"revelacion":"Menos de 1,5: 1,10 hijos por mujer en 2024, la segunda cifra más baja de la UE. La mayoría (69 %) quiere al menos dos.","analogia":null,"campos":"v «1,10»; k «hijos por mujer en 2024, la segunda cifra más baja de la UE. La mayoría (69%) quiere al menos dos»","soloVIS":null,"sinVisual":false,"hacer":"Combinar prestaciones por hijo, plazas de guardería y una fiscalidad que baja el impuesto según el tamaño de la familia, como Francia."},{"n":47,"l":10,"formato":"deslizador","pregunta":"¿Qué porcentaje de los menores vive en riesgo de pobreza o exclusión en España?","min":5,"max":80,"paso":0.1,"unidad":"%","opciones":null,"correcta":33.8,"tolerancia":6,"revelacion":"33,8 % de los menores vive en riesgo de pobreza o exclusión (2025), el dato más alto de la UE.","analogia":"En una clase de 30 niños, unos 10 vivirían en riesgo de pobreza o exclusión.","campos":"v «33,8%»; k «de los menores vive en riesgo de pobreza o exclusión (2025): el dato más alto de la UE»","soloVIS":null,"sinVisual":false,"hacer":"Pagar una prestación por hijo a todas las familias, sin importar su renta, como hace Alemania: 259 euros al mes."},{"n":48,"l":10,"formato":"cuatro","pregunta":"¿Qué parte de los hogares con derecho al Ingreso Mínimo Vital no lo pide?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["Un 12 %","Un 52 %","Un 25 %","Un 80 %"],"correcta":1,"tolerancia":null,"revelacion":"Un 52 % no lo pide. En el complemento por hijos, el 71 %. Solo alcanza al 21,3 % de los hogares en riesgo de pobreza.","analogia":null,"campos":"v «52%»; k «de los hogares con derecho al Ingreso Mínimo Vital no lo pide. En el complemento por hijos, el 71%»; q «Solo alcanza al 21,3% de los hogares en riesgo de pobreza»","soloVIS":null,"sinVisual":false,"hacer":"Hacer las ayudas automáticas y sin examen de renta, como la prestación por hijo de Alemania, que es universal."},{"n":49,"l":10,"formato":"cuatro","pregunta":"¿Desde qué año tiene España la hora de Europa central?","min":null,"max":null,"paso":null,"unidad":null,"opciones":["1940","1959","1978","1986"],"correcta":0,"tolerancia":null,"revelacion":"Desde 1940. En verano, el reloj va más de dos horas por delante del sol en casi todo el país.","analogia":"Es como llevar en verano el reloj de la cocina más de dos horas por delante del sol. El cambio se hizo en 1940 y sigue.","campos":"v «1940»; k «adoptó la hora de Europa central. En verano… más de dos horas por delante del sol en casi todo el país»","soloVIS":"«86 años» (1940-2026) solo está en VIS y caduca cada enero: se deja fuera del texto","sinVisual":true,"hacer":"Adoptar la hora de Greenwich, como hace Portugal en la misma longitud que Galicia."}];
 (function(){
 'use strict';
-var KEY='plano-juego-v1', EXC=[6,10,14,44,45], jg=document.getElementById('jg');
+var K1='plano-juego-v1', K2='plano-juego-v2', EXC=[6,10,14,44,45], TIEMPO=20000, URL_JUEGO='';
+var jg=document.getElementById('jg');
 var RED=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
-var cur=null, S=leer(), rot=0;
 function ficha(n){return F.find(function(f){return f.n===n;});}
+function qn(n){return BANCO.find(function(b){return b.n===n;});}
 var Q=BANCO.filter(function(q){return EXC.indexOf(q.n)<0&&ficha(q.n);});
-function leer(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&Array.isArray(s.lin)&&(s.part===null||(s.part&&Array.isArray(s.part.ns)&&Array.isArray(s.part.res))))return {lin:s.lin,part:s.part};}catch(e){}return {lin:[],part:null};}
-function guardar(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+var FR={
+  esp:['¡Buenas! Gira la ruleta y empezamos.','Cinco preguntas, las mismas para todo el que juegue hoy.','Sin prisa, que aquí se aprende jugando.','Gira y que la línea decida por ti.','¿Preparado? Yo, con las gafas puestas.','Hoy el reto es el mismo para todos. ¡A ver quién lo clava!'],
+  piensa:['A ver dónde cae…','Dale vueltas, que ya casi…','Un poquito más de giro…','Ojo, que ahí va…','Mira, mira, mira…','Esto pinta a línea buena.'],
+  senala:['Pues aquí tienes la pregunta.','Piensa bien la respuesta.','Elige la que te suene más.','Mira bien las opciones, anda.','Esta tiene miga, ¿eh?','Tú decides: ¿cuál crees?'],
+  dato:['Mueve la barra hasta tu cifra.','Tira de la barra, que yo espero.','Piensa en cuánto sería y ajusta.','Un número, sin miedo.','Aquí vale lo que calcules.','Tu cifra, tu barra.'],
+  ok:['¡Olé!','¡Esa era de nota!','¡Qué bien, qué bien!','Eso es saber de tu país.','¡Bien visto!','¡Ole, ole y ole!'],
+  cerca:['Casi, casi…','Ahí andabas, que no es poco.','Muy cerquita, ¿eh?'],
+  mal:['Tranqui, esa no se la sabe casi nadie.','Nos pasa a todos. ¡Pa’lante!','Pues ya te la quedas para siempre.','Vale, pasamos. Que no se note.','Ahora la llevas en la memoria.','Esta era traicionera, la verdad.'],
+  f5:['¡Pleno! Cinco de cinco, qué crack.','¡Ni un fallo! Así se hace.','Pleno al quince, me lo creo.','¡Lo has clavado todo!','Cinco de cinco. Ya puedes presumir.','¡Qué nivel, de verdad!'],
+  f34:['Muy bien, se nota que sabes.','Buen resultado. Vas sobrado.','Casi pleno, y eso que era difícil.','Te has movido de lo lindo.','Así se juega: con ganas y cabeza.','Muy bien. Mañana, a por el pleno.'],
+  f02:['Hoy toca aprender. Mañana, otro reto.','Tranqui, estas eran de las duras.','Cada reto te deja un dato nuevo.','Nada, a repasar y volver mañana.','Lo importante es que has venido.','Mañana sale otra, a por ella.']
+};
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return '&#'+c.charCodeAt(0)+';';});}
 function dec(p){return p==null?0:(String(p).split('.')[1]||'').length;}
 function num(v,q){return v.toLocaleString('es-ES',{maximumFractionDigits:dec(q.paso)});}
 function fmt(v,q){return num(v,q)+(q.unidad?' '+q.unidad:'');}
-function barajar(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function cs(l){return '--c:var(--l'+l+');--ci:var(--l'+l+'i)';}
 function st(l){return 'style="'+cs(l)+'"';}
-function li(l,cls,extra){var vista=S.lin.indexOf(l)>=0;return '<li class="jg-par'+cls+'" style="'+cs(l)+(extra||'')+'"><b></b><i aria-hidden="true">'+l+'</i><span aria-hidden="true">'+l+'</span><span class="sr">Línea '+l+', '+esc(LINES[l-1].name)+(vista?', vista':'')+'</span></li>';}
 function ptoSVG(r,a){return (140+r*Math.cos(a)).toFixed(2)+' '+(140+r*Math.sin(a)).toFixed(2);}
+function frase(k){var a=FR[k];return a[Math.floor(Math.random()*a.length)];}
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296;};}
+function barajar(a,rf){rf=rf||Math.random;for(var i=a.length-1;i>0;i--){var j=Math.floor(rf()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function hoyN(){var d=new Date();return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();}
+function ayerN(n){var t=new Date(Math.floor(n/10000),Math.floor(n/100)%100-1,n%100-1);return t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate();}
+function fechaTxt(n){var s=String(n);return s.slice(6,8)+'-'+s.slice(4,6)+'-'+s.slice(0,4);}
+function proximo(){var t=new Date(),ms=new Date(t.getFullYear(),t.getMonth(),t.getDate()+1)-t,h=Math.floor(ms/3600000),m=Math.floor(ms%3600000/60000);return h+' h '+m+' min';}
+function leer1(){try{var s=JSON.parse(localStorage.getItem(K1));if(s&&Array.isArray(s.lin)&&(s.part===null||(s.part&&Array.isArray(s.part.ns)&&Array.isArray(s.part.res))))return {lin:s.lin,part:s.part};}catch(e){}return {lin:[],part:null};}
+function guardar1(){try{localStorage.setItem(K1,JSON.stringify(S));}catch(e){}}
+function valido(d){return !!d&&typeof d.f==='number'&&Array.isArray(d.ns)&&d.ns.length===5&&d.ns.every(function(n){return !!qn(n);})&&Array.isArray(d.res)&&d.res.length<=5&&Array.isArray(d.pts)&&Array.isArray(d.bon)&&Array.isArray(d.mul);}
+function leer2(){var b={rec:0,dias:0,ult:0,dia:null,snd:false,modo:'reto'};try{var s=JSON.parse(localStorage.getItem(K2));if(s&&typeof s==='object'){b.rec=+s.rec||0;b.dias=+s.dias||0;b.ult=+s.ult||0;b.snd=!!s.snd;b.modo=s.modo==='libre'?'libre':'reto';b.dia=valido(s.dia)?s.dia:null;}}catch(e){}return b;}
+function guardar2(){try{localStorage.setItem(K2,JSON.stringify(V));}catch(e){}}
+var S=leer1(),V=leer2(),modo=V.modo,cur=null,rot=0,T0=0,SPIN=null,DRAG=null,AC=null;
+function mult(r){return r>=4?3:r>=2?2:1;}
+function diasVivos(){var h=hoyN();return (V.ult===h||V.ult===ayerN(h))?V.dias:0;}
+function P(){return modo==='reto'?V.dia:S.part;}
+function usadas(){var p=P();return p?p.ns.slice(0,p.res.length).map(function(nq){return qn(nq).l;}):[];}
+function retoNs(f){var r=mulberry32(f),pool=Q.slice().sort(function(a,b){return a.n-b.n;}),ls=[],out=[];barajar(pool,r);pool.forEach(function(q){if(out.length<5&&ls.indexOf(q.l)<0){ls.push(q.l);out.push(q.n);}});return out;}
+function asegurarDia(){var h=hoyN();if(!V.dia||V.dia.f!==h){V.dia={f:h,ns:retoNs(h),res:[],pts:[],bon:[],mul:[],tot:0,racha:0,mejor:0,done:false,nuevo:false};guardar2();}}
+function dib(p){try{return window.ceitillo(p);}catch(e){return '';}}
+function presen(pose,msg){return '<div class="jg-presen"><figure class="jg-cei" aria-hidden="true"><svg viewBox="-480 -1030 960 1100" focusable="false">'+dib(pose)+'</svg></figure><p class="jg-boc" id="jgBoc">'+esc(msg)+'</p></div>';}
+function cei(pose,msg){var s=jg.querySelector('.jg-cei svg'),b=document.getElementById('jgBoc');if(s)s.innerHTML=dib(pose);if(b&&msg)b.textContent=msg;}
+function marcHTML(){var p=V.dia;return '<span>Puntos <b>'+p.tot+'</b></span><span>Racha <b>'+p.racha+'</b> · ×<b>'+mult(p.racha)+'</b></span>';}
+function barra(){return '<div class="jg-barra"><div class="jg-modo" role="group" aria-label="Modo de juego"><button class="jg-mbtn" type="button" data-m="reto" aria-pressed="'+(modo==='reto')+'">Reto de hoy</button><button class="jg-mbtn" type="button" data-m="libre" aria-pressed="'+(modo==='libre')+'">Ruleta libre</button></div><button class="jg-mbtn" id="jgSnd" type="button" aria-pressed="'+V.snd+'">Sonido: '+(V.snd?'sí':'no')+'</button></div>';}
+function cabecera(n,ans){var p=P();
+  return '<div class="jg-cab"><p class="jg-num">Pregunta '+n+' de 5</p><ol class="jg-dots" aria-hidden="true">'
+    +p.ns.map(function(nq,i){var q=qn(nq);
+      return '<li class="jg-pt'+(i<(ans?n:n-1)?' hecho':(!ans&&i===n-1?' aqui':''))+'" style="'+cs(q.l)+'"></li>';}).join('')
+    +'</ol></div>';
+}
+function miniHTML(){
+  var h='<svg viewBox="0 0 280 280" aria-hidden="true" focusable="false">';
+  for(var i=0;i<10;i++){var a0=(i*36-90)*Math.PI/180,a1=((i+1)*36-90)*Math.PI/180;
+    h+='<path d="M140 140L'+ptoSVG(136,a0)+' A136 136 0 0 1 '+ptoSVG(136,a1)+'Z" style="fill:var(--l'+(i+1)+');stroke:var(--surface);stroke-width:4"/>';}
+  return h+'<circle cx="140" cy="140" r="34" style="fill:var(--surface)"/></svg>';
+}
 function ruedaHTML(){
-  var p=S.part,jug=p?p.ns.slice(0,p.res.length).map(function(nq){return BANCO.find(function(b){return b.n===nq;}).l;}):[],
-    h='<div class="jg-disco-wrap"><span class="jg-punt" id="jgPunt" aria-hidden="true"></span><div class="jg-bal jg-idle"><div class="jg-disco" id="jgDisco" style="transform:rotate('+rot+'deg)"><svg viewBox="0 0 280 280" aria-hidden="true" focusable="false">';
+  var jug=usadas(),h='<div class="jg-disco-wrap"><span class="jg-punt" id="jgPunt" aria-hidden="true"></span><div class="jg-bal jg-idle"><div class="jg-disco" id="jgDisco" style="transform:rotate('+rot+'deg)"><svg viewBox="0 0 280 280" aria-hidden="true" focusable="false">';
   for(var i=0;i<10;i++){
     var n=i+1,a0=(i*36-90)*Math.PI/180,a1=((i+1)*36-90)*Math.PI/180,rd=(i+.5)*36;
     h+='<g class="jg-sec'+(jug.indexOf(n)>=0?' gastado':'')+'" data-l="'+n+'">'
@@ -1983,40 +2608,52 @@ function ruedaHTML(){
     +'<button class="jg-eje" id="jgEje" type="button">GIRAR</button></div>';
   return h;
 }
-function miniHTML(){
-  var h='<svg viewBox="0 0 280 280" aria-hidden="true" focusable="false">';
-  for(var i=0;i<10;i++){var a0=(i*36-90)*Math.PI/180,a1=((i+1)*36-90)*Math.PI/180;
-    h+='<path d="M140 140L'+ptoSVG(136,a0)+' A136 136 0 0 1 '+ptoSVG(136,a1)+'Z" style="fill:var(--l'+(i+1)+');stroke:var(--surface);stroke-width:4"/>';}
-  return h+'<circle cx="140" cy="140" r="34" style="fill:var(--surface)"/></svg>';
-}
-function cabecera(n,ans){
-  return '<div class="jg-cab"><p class="jg-num">Pregunta '+n+' de 5</p><ol class="jg-dots" aria-hidden="true">'
-    +S.part.ns.map(function(nq,i){var q=BANCO.find(function(b){return b.n===nq;});
-      return '<li class="jg-pt'+(i<(ans?n:n-1)?' hecho':(!ans&&i===n-1?' aqui':''))+'" style="'+cs(q.l)+'"></li>';}).join('')
-    +'</ol></div>';
-}
-function marcar(z,x,panel,q,v){
-  var ac=z.querySelector('.jg-acc');if(ac)ac.remove();
-  z.querySelectorAll('input').forEach(function(i){i.disabled=true;});
-  if(q.formato!=='deslizador')z.querySelectorAll('.jg-op').forEach(function(L){
-    var idx=+L.querySelector('input').value;
-    if(idx===q.correcta){L.classList.add('ok');L.insertAdjacentHTML('beforeend','<em class="jg-tag">Dato</em>');}
-    else if(idx===x){L.classList.add('tu');L.insertAdjacentHTML('beforeend','<em class="jg-tag">Tu respuesta</em>');}
-  });
-  z.insertAdjacentHTML('beforeend',panel);
-  if(v===2){var b=jg.querySelector('.jg-banda');if(b)b.classList.add('barre');}
-  var g=jg.querySelector('.jg-sec[data-l="'+q.l+'"]');if(g)g.classList.add('gastado');
-}
-function nueva(){var p=barajar(Q.slice()),nu=[],ls=[];
-  p.sort(function(a,b){return (S.lin.indexOf(a.l)>=0)-(S.lin.indexOf(b.l)>=0);});
-  p.forEach(function(q){if(nu.length<5&&ls.indexOf(q.l)<0){ls.push(q.l);nu.push(q.n);}});
-  S.part={ns:nu,res:[]};guardar();}
-function micro(v,n){var L=v<0?['Te la enseñamos igual.']:v===2?['Así es.','Justo en el dato.']:v===1?['Te has quedado cerca.','Estabas en el margen.']:['El dato es otro.','Sale distinto de lo que se suele pensar.','Aquí el número pesa más de lo que parece.'];return L[n%L.length];}
 function pantalla(){
-  var p=S.part,cab=p?cabecera(p.res.length+1,false):'<p class="jg-lema">Sin reloj. Sin puntos por rapidez.</p>';
-  jg.innerHTML=cab+'<div class="jg-rul">'+ruedaHTML()+'<button class="btn btn-primary jg-girar jg-latido" id="jgGirar" type="button">Girar</button><p class="sr" id="jgRuleta" aria-live="polite"></p></div><div id="jgPreg"></div>';
+  if(modo==='reto'){asegurarDia();if(V.dia.done||V.dia.res.length>=5){if(V.dia.done)vistaFin();else finReto();return;}}
+  var p=P(),cab=modo==='reto'?'<div class="jg-marc" id="jgMarc">'+marcHTML()+'</div>':'';
+  cab+=p?cabecera(p.res.length+1,false):'<p class="jg-lema">Sin reloj. Sin puntos por rapidez.</p>';
+  jg.innerHTML=barra()+cab+'<div class="jg-rul">'+ruedaHTML()+'<button class="btn btn-primary jg-girar jg-latido" id="jgGirar" type="button">Girar</button><p class="sr" id="jgRuleta" aria-live="polite"></p></div><div id="jgPreg">'+presen('neutra',frase('esp'))+'</div>';
 }
-var SPIN=null,DRAG=null;
+function tono(f,t0,dur,tipo){if(!V.snd)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();var t=AC.currentTime+t0,o=AC.createOscillator(),g=AC.createGain();o.type=tipo||'sine';o.frequency.value=f;g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.18,t+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+dur);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+dur+0.02);}catch(e){}}
+function sonido(k){if(k==='ok'){tono(660,0,.14);tono(990,.12,.22);}else if(k==='mal'){tono(150,0,.32,'sawtooth');}else if(k==='fin'){tono(523,0,.14);tono(659,.14,.14);tono(784,.28,.34);}}
+function vibra(p){try{if(navigator.vibrate)navigator.vibrate(p);}catch(e){}}
+function sacude(){var e=document.getElementById('jgPreg');if(!e||RED.matches)return;e.classList.remove('jg-sacude');void e.offsetWidth;e.classList.add('jg-sacude');}
+function confeti(){if(RED.matches)return;try{var c=document.createElement('canvas'),x=c.getContext('2d'),W=innerWidth,H=innerHeight,ps=[],cols=['#f0b020','#17120e','#d5352b','#2b6cb0','#2f855a'],i;c.className='jg-conf';c.width=W;c.height=H;document.body.appendChild(c);for(i=0;i<40;i++)ps.push({x:W/2,y:H*0.35,vx:(Math.random()-0.5)*12,vy:-Math.random()*10-4,c:cols[i%cols.length],s:4+Math.random()*4});var t0=performance.now();(function f(now){var t=now-t0;x.clearRect(0,0,W,H);ps.forEach(function(p){p.vy+=0.4;p.x+=p.vx;p.y+=p.vy;x.fillStyle=p.c;x.fillRect(p.x,p.y,p.s,p.s);});if(t<1000)requestAnimationFrame(f);else c.remove();})(t0);}catch(e){}}
+function textoReto(d){var n=d.res.filter(function(v){return v===2;}).length,g=d.res.map(function(v){return v===2?'🟩':v===1?'🟨':'🟥';}).join(''),
+  t='Plano de lo que falla · Reto del '+fechaTxt(d.f)+'\n'+g+' '+n+'/5 · '+d.tot+' puntos\n¿Cuánto sabes tú de tu país?';
+  return URL_JUEGO?t+'\n'+URL_JUEGO:t;}
+function copiarTexto(t,cb){
+  function fb(){try{var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();var ok=document.execCommand('copy');a.remove();cb(!!ok);}catch(e){cb(false);}}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(function(){cb(true);},fb);else fb();}catch(e){fb();}
+}
+function compartir(){
+  var t=textoReto(V.dia),b=document.getElementById('jgShare');
+  if(navigator.share){try{navigator.share({text:t}).catch(function(){});return;}catch(e){}}
+  copiarTexto(t,function(ok){if(b)b.textContent=ok?'Copiado':'No se pudo copiar';document.getElementById('jgLive').textContent=ok?'Resultado copiado.':'No se pudo copiar.';});
+}
+function finReto(){
+  var d=V.dia;if(d.done)return;
+  if(V.ult!==d.f){V.dias=(V.ult===ayerN(d.f))?V.dias+1:1;V.ult=d.f;}
+  d.done=true;
+  if(d.tot>0&&d.tot>V.rec){V.rec=d.tot;d.nuevo=true;}
+  guardar2();sonido('fin');vibra([30,60,30,60,80]);
+  vistaFin();
+  var h=document.getElementById('jgRes');if(h)h.focus({preventScroll:true});
+  document.getElementById('jgLive').textContent='Reto terminado: '+d.res.filter(function(v){return v===2;}).length+' de 5 aciertos y '+d.tot+' puntos.';
+}
+function vistaFin(){
+  var d=V.dia,n=d.res.filter(function(v){return v===2;}).length,pose=n===5?'celebra':n>=3?'si':'duda',
+    msg=n===5?frase('f5'):n>=3?frase('f34'):frase('f02'),
+    grid=d.res.map(function(v){return v===2?'🟩':v===1?'🟨':'🟥';}).join(''),
+    rep=d.ns.map(function(nq,i){return {q:qn(nq),v:d.res[i]};}).filter(function(o){return o.v<=0;});
+  jg.innerHTML=barra()+presen(pose,msg)+'<div class="jg-final"><h3 class="jg-res" id="jgRes" tabindex="-1">'+d.tot+' puntos</h3>'
+    +'<p class="jg-grid" aria-hidden="true">'+grid+'</p>'
+    +'<ul class="jg-stats"><li><b>'+n+'/5</b><span>aciertos</span></li><li><b>'+d.mejor+'</b><span>mejor racha</span></li><li><b>'+V.rec+'</b><span>récord personal</span></li><li><b>'+diasVivos()+'</b><span>días seguidos jugando</span></li></ul>'
+    +(d.nuevo?'<p class="jg-pts">¡Nuevo récord personal!</p>':'')
+    +'<p class="jg-pie"><button class="btn btn-primary" id="jgShare" type="button">Compartir</button><button class="btn btn-ghost" id="jgLibre" type="button">Ruleta libre</button></p>'
+    +(rep.length?'<h3 class="jg-rep-h">Repasa lo que has fallado</h3><ul class="jg-rep">'+rep.map(function(o){var f=ficha(o.q.n);return '<li><a href="#p'+o.q.n+'"><b>Línea '+o.q.l+'</b>'+esc(f?f.t:o.q.pregunta)+'</a></li>';}).join('')+'</ul>':'<p class="jg-fu">Ninguna pregunta fallada hoy.</p>')
+    +'<p class="jg-fu">Próximo reto: mañana a las 00:00 (faltan '+proximo()+').</p></div>';
+}
 function setRot(R){rot=R;var d=document.getElementById('jgDisco');if(d)d.style.transform='rotate('+R+'deg)';}
 function mod360(x){return ((x%360)+360)%360;}
 function eo(u){return 1-(1-u)*(1-u);}
@@ -2052,8 +2689,8 @@ function frame(now){
 }
 function girar(imp){
   if(SPIN)return;
-  if(!S.part){nueva();pantalla();}
-  var p=S.part,q=BANCO.find(function(b){return b.n===p.ns[p.res.length];}),btn=document.getElementById('jgGirar'),eje=document.getElementById('jgEje'),
+  if(modo==='libre'&&!S.part){nueva();pantalla();}
+  var p=P(),q=qn(p.ns[p.res.length]),btn=document.getElementById('jgGirar'),eje=document.getElementById('jgEje'),
     d=document.getElementById('jgDisco'),T=-((q.l-1)*36+18),R0=rot,sg=1,kt=3,dur,dist,Rm,s;
   if(imp&&imp.v){sg=imp.v<0?-1:1;var sp=Math.min(1,Math.abs(imp.v)/1500);dur=3200+800*sp;kt=2+Math.round(sp*2);}
   else dur=3200+Math.round(Math.random()*800);
@@ -2063,6 +2700,7 @@ function girar(imp){
   if(btn){btn.disabled=true;btn.classList.remove('jg-latido');}
   if(eje)eje.disabled=true;
   if(d&&d.parentNode)d.parentNode.classList.remove('jg-idle');
+  cei('piensa',frase('piensa'));
   s={q:q,R0:R0,Rm:Rm,Rov:Rm+sg*3.5,dur:dur,t0:null,k:null,pique:null,ultimo:null,vib:false,done:false,raf:0,tm:0};
   if(RED.matches){setRot(Rm);acaba(s);return;}
   SPIN=s;
@@ -2106,71 +2744,113 @@ function soltar(e){
 }
 jg.addEventListener('pointerup',soltar);
 jg.addEventListener('pointercancel',soltar);
+function nueva(){var p=barajar(Q.slice()),nu=[],ls=[];
+  p.sort(function(a,b){return (S.lin.indexOf(a.l)>=0)-(S.lin.indexOf(b.l)>=0);});
+  p.forEach(function(q){if(nu.length<5&&ls.indexOf(q.l)<0){ls.push(q.l);nu.push(q.n);}});
+  S.part={ns:nu,res:[]};guardar1();}
 function pregunta(){
-  var s=S.part,k=s.res.length,q,f2,mid,ord;
-  cur=BANCO.find(function(b){return b.n===s.ns[k];});q=cur;
-  if(q.formato==='deslizador'){
+  var p=P(),k=p.res.length,q=qn(p.ns[k]),rt=modo==='reto',rf=rt?mulberry32(V.dia.f+k*97+5):null,f2,mid,ord,dl=q.formato==='deslizador',tim='';
+  cur=q;
+  if(rt){T0=Date.now();tim='<div class="jg-tim" aria-hidden="true"><i></i></div><p class="jg-bon">Rapidez: hasta 50 puntos si contestas en 20 s.</p>';}
+  if(dl){
     mid=q.min+Math.round((q.max-q.min)/2/q.paso)*q.paso;
     f2='<form class="jg-ctrl" id="jgF"><label class="jg-lema" for="jgR">Mueve la barra hasta tu cifra.</label><output class="jg-val" id="jgV">'+fmt(mid,q)+'</output><input class="jg-range" id="jgR" type="range" min="'+q.min+'" max="'+q.max+'" step="'+q.paso+'" value="'+mid+'" aria-valuetext="'+esc(fmt(mid,q))+'"><div class="jg-ext"><span>'+fmt(q.min,q)+'</span><span>'+fmt(q.max,q)+'</span></div>';
   }else{
     ord=q.opciones.map(function(t,i){return i;});
-    if(q.formato==='cuatro')barajar(ord);
+    if(q.formato==='cuatro')barajar(ord,rf||Math.random);
     f2='<form class="jg-ctrl" id="jgF"><fieldset class="jg-ops'+(q.opciones.length===4?' c4':'')+'"><legend class="jg-lema">'+(q.formato==='mito'?'¿Verdadero o mito?':'Elige una.')+'</legend>'
-      +ord.map(function(i,p){return '<label class="jg-op"><input type="radio" name="jgO" value="'+i+'"><i aria-hidden="true"></i><b class="jg-let" aria-hidden="true">'+'ABCD'.charAt(p)+'</b><span>'+esc(q.opciones[i])+'</span></label>';}).join('')+'</fieldset>';
+      +ord.map(function(i,p2){return '<label class="jg-op"><input type="radio" name="jgO" value="'+i+'"><i aria-hidden="true"></i><b class="jg-let" aria-hidden="true">'+'ABCD'.charAt(p2)+'</b><span>'+esc(q.opciones[i])+'</span></label>';}).join('')+'</fieldset>';
   }
   f2+='<div class="jg-acc"><button class="btn btn-primary" id="jgOk" type="submit" disabled>Comprobar</button><button class="btn-text" id="jgSkip" type="button">Saltar</button></div></form>';
-  document.getElementById('jgPreg').innerHTML='<div class="jg-banda jg-estacion" '+st(q.l)+'><b>Línea '+q.l+' – '+esc(LINES[q.l-1].name)+'</b></div>'
+  document.getElementById('jgPreg').innerHTML=presen(dl?'dato':'senala',frase(dl?'dato':'senala'))+tim
+    +'<div class="jg-banda jg-estacion" '+st(q.l)+'><b>Línea '+q.l+' – '+esc(LINES[q.l-1].name)+'</b></div>'
     +'<h3 class="jg-q" id="jgQ" tabindex="-1"><span class="sr">Pregunta '+(k+1)+' de 5. </span>'+(q.formato==='mito'?'«'+esc(q.pregunta)+'»':esc(q.pregunta))+'</h3>'
     +'<div id="jgZ">'+f2+'</div>';
   document.getElementById('jgQ').focus({preventScroll:true});
-  jg.scrollIntoView({block:'nearest'});}
+  document.getElementById('jgPreg').scrollIntoView({block:'start'});
+}
+function micro(v,n){var L=v<0?['Te la enseñamos igual.']:v===2?['Así es.','Justo en el dato.']:v===1?['Te has quedado cerca.','Estabas en el margen.']:['El dato es otro.','Sale distinto de lo que se suele pensar.','Aquí el número pesa más de lo que parece.'];return L[n%L.length];}
+function ptsTxt(inf){if(inf.v<0)return 'Sin respuesta: 0 puntos.';var det=[];if(inf.base>0)det.push(inf.base+(inf.mul>1?' × '+inf.mul+' por racha':' por acierto'));if(inf.bon>0)det.push(inf.bon+' por rapidez');return (inf.pts>0?'+'+inf.pts:'0')+' puntos'+(det.length?' ('+det.join(' + ')+')':'');}
 function responder(x){
-  var q=cur,s=S.part,d=x===null?0:Math.abs(x-q.correcta),v;
+  var q=cur,p=P(),d=x===null?0:Math.abs(x-q.correcta),v,inf={v:0,base:0,mul:1,bon:0,pts:0},ms;
   if(x===null)v=-1;else if(q.formato==='deslizador')v=d<=q.tolerancia/4?2:d<=q.tolerancia?1:0;else v=x===q.correcta?2:0;
-  s.res.push(v);if(S.lin.indexOf(q.l)<0)S.lin.push(q.l);guardar();revelar(v,x);}
-function revelar(v,x){
-  var q=cur,k=S.part.res.length-1,dl=q.formato==='deslizador',tu=x===null?'—':(dl?fmt(x,q):q.opciones[x]),dato=dl?fmt(q.correcta,q):q.opciones[q.correcta],cas,reg='',t,r,pc,d,f=ficha(q.n),te,panel,z,o=0,b=[],mi=micro(v,q.n);
-  if(dl){t=num(q.correcta,q);var pos=0;
+  inf.v=v;
+  if(modo==='reto'){
+    p.racha=v===2?p.racha+1:0;
+    inf.mul=mult(p.racha);
+    if(v>=1)inf.base=q.formato==='deslizador'?Math.round(100*Math.max(0,1-d/(2*q.tolerancia))):(v===2?100:0);
+    if(inf.base>0){ms=Date.now()-T0;inf.bon=ms<TIEMPO?Math.round(50*(1-ms/TIEMPO)):0;}
+    inf.pts=inf.base*inf.mul+inf.bon;
+    p.tot+=inf.pts;p.pts.push(inf.pts);p.bon.push(inf.bon);p.mul.push(inf.mul);p.mejor=Math.max(p.mejor,p.racha);
+  }
+  p.res.push(v);
+  if(S.lin.indexOf(q.l)<0)S.lin.push(q.l);
+  guardar1();if(modo==='reto')guardar2();
+  revelar(v,x,inf);
+}
+function revelar(v,x,inf){
+  var q=cur,p=P(),k=p.res.length-1,dl=q.formato==='deslizador',tu=x===null?'—':(dl?fmt(x,q):q.opciones[x]),dato=dl?fmt(q.correcta,q):q.opciones[q.correcta],cas,reg='',t,r,pc,d,f=ficha(q.n),te,panel,z,o=0,b=[],mi=micro(v,q.n),rt=modo==='reto',pt=rt?ptsTxt(inf):'',pos=0;
+  if(dl){t=num(q.correcta,q);
     cas=t.split('').filter(function(c){return c.trim();}).map(function(c){return '<span class="jg-cas" style="--i:'+(pos++)+'">'+esc(c)+'</span>';}).join('')+(q.unidad?'<span>'+esc(q.unidad)+'</span>':'');
     r=q.max-q.min;pc=function(y){return (y-q.min)/r*100;};d=pc(q.correcta);
     reg='<div class="jg-regla" aria-hidden="true">'+(x===null?'':'<i class="jg-hueco" style="left:'+Math.min(pc(x),d)+'%;width:'+Math.abs(pc(x)-d)+'%;--o:'+(q.correcta>x?'0':'100%')+'"></i><b style="left:'+pc(x)+'%"></b>')+'<b class="d" style="left:'+d+'%"></b></div>';
   }else cas='<span class="jg-cas ancha">'+esc(dato)+'</span>';
-  panel='<div class="jg-panel" '+st(q.l)+'><p class="jg-fila"><span class="jg-et">Tú</span><span class="jg-tu">'+esc(tu)+'</span></p><p class="jg-fila"><span class="jg-et">El dato</span><span class="jg-cass" aria-hidden="true">'+cas+'</span><span class="sr">'+esc(dato)+'</span></p>'+reg+'</div>';
+  panel='<div class="jg-panel" '+st(q.l)+'><p class="jg-fila"><span class="jg-et">Tu respuesta</span><span class="jg-tu">'+esc(tu)+'</span></p><p class="jg-fila"><span class="jg-et">Dato</span><span class="jg-cass" aria-hidden="true">'+cas+'</span><span class="sr">'+esc(dato)+'</span></p>'+reg+'</div>';
   jg.querySelector('.jg-cab').outerHTML=cabecera(k+1,true);
+  var tm=document.querySelector('#jgPreg .jg-tim');if(tm)tm.remove();
+  var bn=document.querySelector('#jgPreg .jg-bon');if(bn)bn.remove();
   z=document.getElementById('jgZ');marcar(z,x,panel,q,v);
+  if(rt){var mj=document.getElementById('jgMarc');if(mj)mj.innerHTML=marcHTML();}
+  cei(v===2?'celebra':v===1?'si':'apuro',v===2?frase('ok'):v===1?frase('cerca'):frase('mal'));
+  if(v===2){sonido('ok');vibra([20,40,20]);confeti();}
+  else if(v===1){sonido('ok');vibra(20);}
+  else if(v===0){sonido('mal');vibra(60);sacude();}
   te=x===null?(dl?'El dato es '+dato+'.':'El dato: «'+dato+'».'):(dl?'Tú dijiste '+tu+'. El dato es '+dato+'.':'Elegiste «'+tu+'». El dato: «'+dato+'».');
-  document.getElementById('jgLive').textContent=mi+' '+te+' '+q.revelacion+' Qué se puede hacer: '+q.hacer;
+  document.getElementById('jgLive').textContent=mi+' '+te+(pt?' '+pt+'.':'')+' '+q.revelacion+' Qué se puede hacer: '+q.hacer;
   document.getElementById('jgQ').focus({preventScroll:true});
   setTimeout(function(){
     if(document.getElementById('jgZ')!==z)return;
     var i=function(){return Math.min(o++,3);};
     b.push('<p class="jg-micro jg-in" style="--i:'+i()+'">'+esc(mi)+'</p>');
+    if(pt)b.push('<p class="jg-pts jg-in" style="--i:'+i()+'">'+esc(pt)+'</p>');
     b.push('<p class="jg-rev jg-in" style="--i:'+i()+'">'+esc(q.revelacion)+'</p>');
     var vis=window.visHTML(f);
     if(vis)b.push('<div class="f-vis jg-in" style="'+cs(q.l)+';--i:'+i()+'">'+vis+'</div>');
-    b.push('<p class="jg-ana jg-in" style="--i:'+i()+'">'+esc(q.analogia)+'</p>');
+    if(q.analogia)b.push('<p class="jg-ana jg-in" style="--i:'+i()+'">'+esc(q.analogia)+'</p>');
     b.push('<p class="jg-que jg-in" style="'+cs(q.l)+';--i:'+i()+'"><b>Qué se puede hacer</b>'+esc(q.hacer)+'</p>');
     var fte=VIS[q.n]&&VIS[q.n].fuente;
     if(fte)b.push('<p class="jg-fu jg-in" style="--i:'+i()+'">Fuente: '+esc(fte.replace(/, s\. f\.$/,''))+'</p>');
-    b.push('<div class="jg-pie jg-in" style="--i:'+i()+'"><button class="btn btn-primary" id="jgNext" type="button">'+(S.part.res.length===5?'Ver el resultado':'Siguiente')+'</button><a class="btn btn-ghost" href="#p'+q.n+'">Ver la ficha</a></div>');
+    b.push('<div class="jg-pie jg-in" style="--i:'+i()+'"><button class="btn btn-primary" id="jgNext" type="button">'+(p.res.length===5?'Ver el resultado':'Siguiente')+'</button><button class="btn btn-ghost" id="jgVer" type="button" data-n="'+q.n+'">Ver la parada</button></div>');
     z.insertAdjacentHTML('beforeend',b.join(''));
-  },RED.matches?0:1000);}
+  },RED.matches?0:1000);
+}
+function marcar(z,x,panel,q,v){
+  var ac=z.querySelector('.jg-acc');if(ac)ac.remove();
+  z.querySelectorAll('input').forEach(function(i){i.disabled=true;});
+  if(q.formato!=='deslizador')z.querySelectorAll('.jg-op').forEach(function(L){
+    var idx=+L.querySelector('input').value;
+    if(idx===q.correcta){L.classList.add('ok');L.insertAdjacentHTML('beforeend','<em class="jg-tag">Dato</em>');}
+    else if(idx===x){L.classList.add('tu');L.insertAdjacentHTML('beforeend','<em class="jg-tag">Tu respuesta</em>');}
+  });
+  z.insertAdjacentHTML('beforeend',panel);
+  if(v===2){var b=jg.querySelector('.jg-banda');if(b)b.classList.add('barre');}
+  var g=jg.querySelector('.jg-sec[data-l="'+q.l+'"]');if(g)g.classList.add('gastado');
+}
 function acabar(){
   var s=S.part,n=s.res.filter(function(v){return v>0;}).length,
-    mk=s.ns.map(function(nq,i){var q=BANCO.find(function(b){return b.n===nq;});return (s.res[i]>0?'■':'□')+' L'+q.l;}).join('  '),
+    mk=s.ns.map(function(nq,i){var q=qn(nq);return (s.res[i]>0?'■':'□')+' L'+q.l;}).join('  '),
     txt='Plano de lo que falla · ¿Cuánto sabes de tu país? · '+n+' de 5\n'+mk+'\n■ acierto o cerca · □ el dato era otro';
-  S.part=null;guardar();
-  jg.innerHTML='<div class="jg-panel"><h3 class="jg-res" id="jgRes" tabindex="-1">Has acertado '+n+' de 5.</h3><p>Hoy te llevas cinco datos.</p></div>'
-    +'<ol class="jg-dots jg-dots-g" aria-label="Las cinco preguntas">'+s.ns.map(function(nq){var q=BANCO.find(function(b){return b.n===nq;});return '<li class="jg-pt hecho" style="'+cs(q.l)+'"></li>';}).join('')+'</ol>'
+  S.part=null;guardar1();
+  jg.innerHTML=presen(n===5?'celebra':n>=3?'si':'duda',n===5?frase('f5'):n>=3?frase('f34'):frase('f02'))
+    +'<div class="jg-panel"><h3 class="jg-res" id="jgRes" tabindex="-1">Has acertado '+n+' de 5.</h3><p>Hoy te llevas cinco datos.</p></div>'
+    +'<ol class="jg-dots jg-dots-g" aria-label="Las cinco preguntas">'+s.ns.map(function(nq){var q=qn(nq);return '<li class="jg-pt hecho" style="'+cs(q.l)+'"></li>';}).join('')+'</ol>'
     +'<p>'+(S.lin.length===10?'Plano completo: las 10 líneas.':'Has pasado por '+S.lin.length+' de las 10 líneas.')+'</p>'
     +'<textarea class="jg-copia" id="jgT" readonly rows="3" aria-label="Resultado para copiar">'+esc(txt)+'</textarea>'
     +'<div class="jg-pie"><button class="btn btn-primary" id="jgCopy" type="button">Copiar resultado</button><button class="btn btn-primary jg-latido" id="jgOtra" type="button">Otra partida</button></div>';
   document.getElementById('jgRes').focus({preventScroll:true});}
 function copiar(){
   var t=document.getElementById('jgT'),b=document.getElementById('jgCopy');
-  function ok(){b.textContent='Copiado';document.getElementById('jgLive').textContent='Copiado.';}
-  function fb(){try{t.select();document.execCommand('copy');ok();}catch(e){}}
-  try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t.value).then(ok,fb);else fb();}catch(e){fb();}}
+  copiarTexto(t.value,function(ok){if(ok){b.textContent='Copiado';document.getElementById('jgLive').textContent='Copiado.';}});}
 function habilitar(e){var t=e.target,ok=document.getElementById('jgOk');if(ok&&t.closest&&t.closest('#jgF')&&!t.closest('button'))ok.disabled=false;}
 jg.addEventListener('change',habilitar);
 jg.addEventListener('pointerdown',habilitar);
@@ -2185,14 +2865,32 @@ jg.addEventListener('submit',function(e){
   responder(x);});
 jg.addEventListener('click',function(e){
   var t=e.target.closest('button,a');if(!t)return;
+  if(t.classList.contains('jg-mbtn')&&t.getAttribute('data-m')){if(SPIN)return;modo=t.getAttribute('data-m');V.modo=modo;guardar2();pantalla();return;}
+  if(t.id==='jgSnd'){V.snd=!V.snd;guardar2();t.setAttribute('aria-pressed',String(V.snd));t.textContent='Sonido: '+(V.snd?'sí':'no');if(V.snd)sonido('ok');return;}
   if(t.id==='jgGirar'||t.id==='jgEje')girar();
   else if(t.id==='jgOtra'){nueva();pantalla();}
   else if(t.id==='jgSkip')responder(null);
-  else if(t.id==='jgNext'){if(S.part.res.length>=5)acabar();else pantalla();}
-  else if(t.id==='jgCopy')copiar();});
+  else if(t.id==='jgNext'){var pp=P();if(pp.res.length>=5){if(modo==='reto')finReto();else acabar();}else pantalla();}
+  else if(t.id==='jgCopy')copiar();
+  else if(t.id==='jgShare')compartir();
+  else if(t.id==='jgLibre'){modo='libre';V.modo='libre';guardar2();pantalla();}
+  else if(t.id==='jgVer'){if(window.go)window.go(+t.getAttribute('data-n'));}
+});
 document.querySelectorAll('.jg-mini-r').forEach(function(el){el.innerHTML=miniHTML();});
 (function(){ var p = document.querySelector('.jg-portada'); if (!p || !('IntersectionObserver' in window)) return; new IntersectionObserver(function(es){ es.forEach(function(en){ p.classList.toggle('fuera', !en.isIntersecting); }); }).observe(p); })();
+(function(){var pt=document.getElementById('jgPtS');if(pt){var dv=diasVivos();pt.textContent='Reto de hoy: 5 preguntas'+(dv>0?' · '+dv+(dv===1?' día seguido':' días seguidos'):'')+'.';}})();
 pantalla();
+})();
+</script>
+<script>
+/* Estilo vídeo: Ceitillo saluda en la portada. Es decorativo y lo dibuja ceitillo(), el mismo del juego. */
+(function(){
+  var s = document.querySelector('.hero-cei svg');
+  if (!s || typeof window.ceitillo !== 'function' || !window.CEITILLO) return;
+  try {
+    var pose = Object.assign({}, window.CEITILLO.POSES.saluda, { mira: -1 });
+    s.innerHTML = window.ceitillo(pose).replace(/ id="(?!ct\d)[^"]*"/g, '');
+  } catch (e) {}
 })();
 </script>
 </body>

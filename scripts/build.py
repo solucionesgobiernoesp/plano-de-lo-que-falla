@@ -5,20 +5,25 @@ Uso: python3 scripts/build.py [entrada] [index.html]
 
 La entrada puede ser fuente/plano.html (por defecto) o el archivo que guarda
 la lectura del artefacto («Artifact read»), con la envoltura del visor
-(<!doctype html>…<body>) delante. En ese caso la quita y, además de generar
-index.html, actualiza fuente/plano.html con el contenido limpio.
+(<!doctype html>…<body>) delante. En ese caso la quita (también si viene
+repetida, como pasa cuando alguien publica el archivo con su propia envoltura)
+y, además de generar index.html, actualiza fuente/plano.html con el contenido limpio.
 """
 import sys, re, pathlib
 
 src = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'fuente/plano.html')
 out = pathlib.Path(sys.argv[2] if len(sys.argv) > 2 else 'index.html')
-html = src.read_text(encoding='utf-8')
+html = src.read_text(encoding='utf-8').replace('\r\n', '\n')
 
-# Quitar la envoltura del visor si viene incluida
-if html.lstrip().lower().startswith('<!doctype'):
+# Quitar la envoltura del visor (una o varias) si viene incluida
+while html.lstrip().lower().startswith('<!doctype'):
     html = html[html.index('<body>') + len('<body>'):]
-    html = re.sub(r'</body>\s*</html>\s*$', '', html.rstrip()) + '\n'
-html = html.lstrip()
+while True:
+    sin_cierre = re.sub(r'</body>\s*</html>\s*$', '', html.rstrip())
+    if sin_cierre == html.rstrip():
+        break
+    html = sin_cierre
+html = html.strip() + '\n'
 
 FUENTE = pathlib.Path('fuente/plano.html')
 if src.resolve() != FUENTE.resolve():
